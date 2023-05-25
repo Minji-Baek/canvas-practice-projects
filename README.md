@@ -22,3 +22,20 @@ Canvas를 활용한 projects
     ctx.scale(dpr,dpr);
     //style 도 늘려주니깐 보이는것 처음 설정한 것 과 같지만
     // pixel 수가 늘어났음으로 더 선명해지게 보인다.
+
+#### 3. fps 주사율
+    - 모니터 마다 주사율이 다름
+      => fps 처리를 안하면 모니터 마다 내 애니메이션이 보여지는 프레임 속도가 다 다름
+      => 요즘 모니터 60 ~ 240..? 이니깐 이 사이로 지정
+      -- 공식= 
+      전역
+      let interval = 1000 / 60
+      let now, delta
+      let then = Date.now()
+
+      aniamtion func 안에서
+      now = Date.now() // aimation 해당 시간
+      delta = now - then // 지금 시간 - 전 애니메이션 시간 
+      if (delta < interval) return // 지정 interval 보다 작으면 animation 안할거임
+
+
