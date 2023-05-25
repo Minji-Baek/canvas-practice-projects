@@ -25,6 +25,7 @@ class Particle {
     this.acc = 1.03
   }
   update() {
+    this.yVer *= this.acc
     this.y += this.yVer //각 y값 다르게 해줌
   }
   draw() {
@@ -41,7 +42,7 @@ let interval = 1000 / 60
 let now, delta
 let then = Date.now() 
 
-const TOTAL = 10 // item 갯수
+const TOTAL = 20 // item 갯수
 let particles = []; //배열
 
 //랜덤 함수

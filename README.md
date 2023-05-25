@@ -37,5 +37,12 @@ Canvas를 활용한 projects
       now = Date.now() // aimation 해당 시간
       delta = now - then // 지금 시간 - 전 애니메이션 시간 
       if (delta < interval) return // 지정 interval 보다 작으면 animation 안할거임
-
+#### 4. SVG img 활용
+    /* filter: blur(50px) contrast(50); */
+      => css로 물방울 effect 만들 수 있음
+      but, 배경에 따라 이상한 느낌이 남 
+    - stdDeviation(x,y or 둘다) => blur 값
+    - mode="matrix" values=~ color 값 및 contrast 값 바꿀수 있음
+    -- 어려우면 svg filters 사이트 가서 찾아보쟈. 감사합니다
+    https://yoksel.github.io/svg-filters/#/
 
