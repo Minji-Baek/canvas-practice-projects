@@ -1,27 +1,63 @@
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d'); //2d 관련 작업 도구
-
-//전체 사이즈 set
-const canvasWidth = innerWidth; 
-const canvasHeight = innerHeight;
-
-//내 divice dpr
 const dpr = window.devicePixelRatio; 
 
-canvas.style.width = canvasWidth + 'px';
-canvas.style.height = canvasHeight + 'px';
+let canvasWidth;
+let canvasHeight;
+let particles;
 
-canvas.width = canvasWidth * dpr;
-canvas.height = canvasHeight * dpr;
-ctx.scale(dpr,dpr);
+
+//내 모니터는 60주사
+let interval = 1000 / 60
+let now, delta
+let then = Date.now() 
+
+
+//랜덤 함수
+const randomNumBetween = (min, max) => {
+  return Math.random() * (max - min + 1) + min
+} 
+
+function init(){
+  //전체 사이즈 set
+  canvasWidth = innerWidth; 
+  canvasHeight = innerHeight;
+
+  canvas.width = canvasWidth * dpr;
+  canvas.height = canvasHeight * dpr;
+  ctx.scale(dpr,dpr);
+
+  canvas.style.width = canvasWidth + 'px';
+  canvas.style.height = canvasHeight + 'px';
+
+
+  particles = []; //배열
+  const TOTAL = canvasWidth / 20 // item 갯수
+
+
+  for (let i = 0; i < TOTAL; i++) {
+    const x = randomNumBetween(0, canvasWidth)
+    const y = randomNumBetween(0, canvasHeight)
+    const radius = randomNumBetween(30, 70)
+    const yVer = randomNumBetween(1, 5)
+    const particle = new Particle(x, y, radius, yVer)
+    particles.push(particle)
+  }
+}
 
 //dot.gui
+
+const feGaussianBlur = document.querySelector('feGaussianBlur');
+const feColorMatrix = document.querySelector('feColorMatrix');
+
+
 const controls = new function () {
   this.blurValue = 40; //blur
   this.alphaChannel = 100; //constract 초기값
   this.alphaOffset = -23; //constract 초기값
   this.acc = 1.03;
 };
+
 let gui = new dat.GUI();
 
 const f1 = gui.addFolder('Gooey Effect');
@@ -65,27 +101,6 @@ class Particle {
   }
 }
 
-//내 모니터는 60주사
-let interval = 1000 / 60
-let now, delta
-let then = Date.now() 
-
-const TOTAL = 20 // item 갯수
-let particles = []; //배열
-
-//랜덤 함수
-const randomNumBetween = (min, max) => {
-  return Math.random() * (max - min + 1) + min
-} 
-
-for (let i = 0; i < TOTAL; i++) {
-  const x = randomNumBetween(0, canvasWidth)
-  const y = randomNumBetween(0, canvasHeight)
-  const radius = randomNumBetween(50, 100)
-  const yVer = randomNumBetween(1, 5)
-  const particle = new Particle(x, y, radius, yVer)
-  particles.push(particle)
-}
 
 //애니메이션 함수
 function animate() {
@@ -106,7 +121,7 @@ function animate() {
     if (particle.y - particle.radius > canvasHeight) {
       particle.y = -particle.radius;
       particle.x = randomNumBetween(0, canvasWidth);
-      particle.radius = randomNumBetween(50, 100);
+      particle.radius = randomNumBetween(30, 70);
       particle.yVer = randomNumBetween(1, 5);
     }
   })
@@ -114,4 +129,11 @@ function animate() {
   then = now - (delta % interval);
 }
 
-animate();
+window.addEventListener('load', ()=> {
+  init();
+  animate();
+})
+
+window.addEventListener('resize', () => {
+  init();
+})
