@@ -40,6 +40,11 @@ Canvas를 활용한 projects
       now = Date.now() // aimation 해당 시간
       delta = now - then // 지금 시간 - 전 애니메이션 시간 
       if (delta < interval) return // 지정 interval 보다 작으면 animation 안할거임
+
+#####  3-1  window.requestAnimationFrame() 
+
+      메서드는 브라우저에게 수행하기를 원하는 애니메이션을 알리고 다음 리페인트 바로 전에 브라우저가 애니메이션을 업데이트할 지정된 함수를 호출하도록 요청합니다. 이 메서드는 리페인트 이전에 호출할 인수로 콜백을 받습니다.
+
 #### 4. SVG img 활용
     /* filter: blur(50px) contrast(50); */
       => css로 물방울 effect 만들 수 있음
