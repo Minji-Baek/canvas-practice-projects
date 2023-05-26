@@ -8,6 +8,7 @@ let then = Date.now();
 
 let canvasWidth, canvasHeight;
 
+
 function init() {
   canvasWidth = window.innerWidth;
   canvasHeight = window.innerHeight;
