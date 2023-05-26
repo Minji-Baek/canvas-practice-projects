@@ -15,6 +15,34 @@ canvas.width = canvasWidth * dpr;
 canvas.height = canvasHeight * dpr;
 ctx.scale(dpr,dpr);
 
+//dot.gui
+const controls = new function () {
+  this.blurValue = 40; //blur
+  this.alphaChannel = 100; //constract 초기값
+  this.alphaOffset = -23; //constract 초기값
+  this.acc = 1.03;
+};
+let gui = new dat.GUI();
+
+const f1 = gui.addFolder('Gooey Effect');
+f1.open();
+f1.add(controls, 'blurValue', 0, 100).onChange(v => {
+  feGaussianBlur.setAttribute('stdDeviation', v);
+});
+f1.add(controls, 'alphaChannel', 1, 200).onChange(v => {
+  feColorMatrix.setAttribute('values', `1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 ${v} ${controls.alphaOffset}`);
+});
+f1.add(controls, 'alphaOffset', -40, 40).onChange(v => {
+  feColorMatrix.setAttribute('values', `1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 ${controls.alphaChannel} ${v}`);
+});
+
+const f2 = gui.addFolder('Particle Property');
+f2.open();
+f2.add(controls, 'acc', 1, 1.5, 0.01).onChange(v => {
+  particles.forEach(particle => particle.acc = v);
+});
+
+
 //particle class, 구조체, update(), draw()
 class Particle {
   constructor(x, y, radius, yVer) {
