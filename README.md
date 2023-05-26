@@ -65,3 +65,7 @@ Canvas를 활용한 projects
     y = r * Math.sin(각도);
 
 
+#### 7. hsla
+    - 색을 각도로 표현 가능
+
+
