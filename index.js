@@ -19,6 +19,7 @@ class Canvas extends CanvasOption{
     let now, delta;
     let then = Date.now();
 
+    
     const frame = ()=> {
       requestAnimationFrame(frame);
     
