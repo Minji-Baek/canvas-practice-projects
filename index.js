@@ -31,7 +31,7 @@ class Canvas extends CanvasOption{
   }
 
   createParticles(x, y, colorDeg) {
-    const PARTICLE_NUM  = 600;
+    const PARTICLE_NUM  = 400;
     for(let i = 0; i < PARTICLE_NUM ; i ++){
       //현재 x,y rand 값을 5~ -5로 했을때 퍼지는 모양이 사각형이였음
       // 원의 모양을 만들기 위해 x, y 사이 값을 원의 반지름 값으로 날아 갈 수 있도록 해야된다.
@@ -55,7 +55,7 @@ class Canvas extends CanvasOption{
       requestAnimationFrame(frame);
     
       now = Date.now();
-      delta = now - delta;
+      delta = now - then;
     
       if(delta < this.interval) return 
       this.ctx.fillStyle = this.bgColor + '40' ;
@@ -106,7 +106,6 @@ class Canvas extends CanvasOption{
       
       
       then = now - (delta % this.interval);
-
     }
     requestAnimationFrame(frame);
   }

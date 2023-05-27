@@ -10,7 +10,7 @@ export default class Particle extends CanvasOption{
     this.opacity = opacity;
     this.colorDeg = colorDeg
     this.gravity = 0.12;
-    this.friction = 0.985; //속도 조절, 점점 0에 수렴
+    this.friction = 0.88; //속도 조절, 점점 0에 수렴
   }
   update(){
     this.vy += this.gravity;
