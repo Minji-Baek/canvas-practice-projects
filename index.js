@@ -23,7 +23,7 @@ class Canvas extends CanvasOption{
       requestAnimationFrame(frame);
     
       now = Date.now();
-      delta = now - delta;
+      delta = now - then;
     
       if(delta < this.interval) return 
     
