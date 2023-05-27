@@ -1,21 +1,22 @@
-import CanvasOption from "./js/CanvasOption.js";
+const canvas = document.querySelector("canvas");
+const ctx = canvas.getContext("2d");
+const dpr = devicePixelRatio > 1 ? 2 : 1
+const fps = 70;
+const interval = 1000 / fps;
+let canvasWidth = window.innerWidth;
+let canvasHeight = window.innerHeight;
 
-class Canvas extends CanvasOption{
-  constructor(){
-    super();// 부모 class 모든 요소 및 함수 사용
+function init() {
+    canvasHeight = innerHeight;
+    canvasWidth = innerWidth;
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasHeight + 'px';
+    canvas.width = canvasWidth * dpr;
+    canvas.height = canvasHeight * dpr;
+    ctx.scale(dpr, dpr);
   }
 
-  init() {
-    this.canvasHeight = innerHeight;
-    this.canvasWidth = innerWidth;
-    this.canvas.width = this.canvasWidth * this.dpr;
-    this.canvas.height = this.canvasHeight * this.dpr;
-    this.ctx.scale(this.dpr, this.dpr);
-    this.canvas.style.width = this.canvasWidth + 'px';
-    this.canvas.style.height = this.canvasHeight + 'px';
-  }
-
-  render(){
+ function render(){
     let now, delta;
     let then = Date.now();
 
@@ -25,24 +26,21 @@ class Canvas extends CanvasOption{
       now = Date.now();
       delta = now - then;
     
-      if(delta < this.interval) return 
-    
-      this.ctx.fillRect(100, 100, 200, 200);
-    
-      then = now - (delta % this.interval);
+      if(delta < interval) return 
+        
+      then = now - (delta % interval);
 
     }
     requestAnimationFrame(frame);
   }
-}
 
-const canvas = new Canvas();
+
 
 window.addEventListener('load', () => {
-  canvas.init();
-  canvas.render();
+  init();
+  render();
 });
 
 window.addEventListener('resize', () => {
-  canvas.init();
+  init();
 });
