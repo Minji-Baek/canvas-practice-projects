@@ -5,13 +5,13 @@ Canvas를 활용한 projects
 
   - css효과를 통해 물방울이 떨어지는 effect를 만들 수 있다. 
 
-  <img src="./readMeIMG/particle-page.gif">
+  <img src="./readMeIMG/particle-page.gif" width="100%" height="100%">
 
 ## 2. projects [fire-effect]
 
   - 여러 particles을 2D 원형의 랜덤한 방향으로 퍼트려 불꽃놀이 effect를 만들었다.
 
-  <img src="./readMeIMG/fire-effect.gif">
+  <img src="./readMeIMG/fire-effect.gif" width="100%" height="100%">
 
 
 ## 이론
