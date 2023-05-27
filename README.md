@@ -62,6 +62,8 @@ Canvas를 활용한 projects
 
       - 컴퓨터 프로그래밍에서 보일러플레이트 또는 보일러플레이트 코드라고 부르는 것은 최소한의 변경으로 여러곳에서 재사용되며, 반복적으로 비슷한 형태를 띄는 코드를 말한다.
 
+      -- branch class-boilerplate 와 function-boilerplate로 관리할 예정이다.
+
 #### 4. SVG img 활용
     /* filter: blur(50px) contrast(50); */
       => css로 물방울 effect 만들 수 있음
