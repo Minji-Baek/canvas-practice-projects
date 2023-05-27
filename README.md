@@ -48,6 +48,20 @@ Canvas를 활용한 projects
       now = Date.now() // aimation 해당 시간
       delta = now - then // 지금 시간 - 전 애니메이션 시간 
       if (delta < interval) return // 지정 interval 보다 작으면 animation 안할거임
+
+#####  3-1  window.requestAnimationFrame() 
+
+      메서드는 브라우저에게 수행하기를 원하는 애니메이션을 알리고 다음 리페인트 바로 전에 브라우저가 애니메이션을 업데이트할 지정된 함수를 호출하도록 요청합니다. 이 메서드는 리페인트 이전에 호출할 인수로 콜백을 받습니다.
+
+    
+      
+##### 3-2 Boilerplate Code?
+
+
+      - canvas size setting, 선명도, fps, animation, requestAnimationFrame 하는 부분이 현재 project에서 Boilerplate Code 로서 setting 하는 부분이기도 함
+
+      - 컴퓨터 프로그래밍에서 보일러플레이트 또는 보일러플레이트 코드라고 부르는 것은 최소한의 변경으로 여러곳에서 재사용되며, 반복적으로 비슷한 형태를 띄는 코드를 말한다.
+
 #### 4. SVG img 활용
     /* filter: blur(50px) contrast(50); */
       => css로 물방울 effect 만들 수 있음
@@ -61,5 +75,14 @@ Canvas를 활용한 projects
 
   -- <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js" integrity="sha512-WoO4Ih0CDOSLYafy22wZD/mcJ7k0ESLqtQsFa6zFKnEUrbtuGU+GkLtVhgt93xa2qewG5gKEC6CWlN8OaCTSVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+#### 6. 원 모양 방향
+  - x, y 좌표는 가로 세로 직선 방향, random으로 item이 축을 따라 이동을 한다면 사각형 모양이 됨
+  - 원 모양으로 item들을 움직여서 만들고 싶다면 방향을 원을 반지름으로 향해야 됨
+    x = r * Math.cos(각도);
+    y = r * Math.sin(각도);
+
+
+#### 7. hsla
+    - 색을 각도로 표현 가능
 
 
