@@ -10,7 +10,7 @@ export default class Particle extends CanvasOption{
     this.opacity = opacity;
     this.colorDeg = colorDeg
     this.gravity = 0.12;
-    this.friction = 0.88; //속도 조절, 점점 0에 수렴
+    this.friction = 0.95; //속도 조절, 점점 0에 수렴
   }
   update(){
     this.vy += this.gravity;
@@ -20,7 +20,7 @@ export default class Particle extends CanvasOption{
 
     this.x += this.vx;
     this.y += this.vy;
-    this.opacity -= 0.02;
+    this.opacity -= 0.008;
   }
   draw(){
     this.ctx.fillStyle = `hsla(${this.colorDeg}, 100%, 65%, ${this.opacity})`

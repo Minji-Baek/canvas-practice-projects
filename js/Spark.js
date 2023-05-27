@@ -13,7 +13,7 @@ export default class Spark extends CanvasOption {
   update(){
     this.x += this.vx;
     this.y += this.vy;
-    this.opacity -= 0.01; 
+    this.opacity -= 0.02; 
   }
   draw(){
     this.ctx.fillStyle = `hsla(${this.colorDeg}, 100% , 65% , ${this.opacity})`

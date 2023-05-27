@@ -40,7 +40,7 @@ class Canvas extends CanvasOption{
 
       const vx = r * Math.cos(angle);
       const vy = r * Math.sin(angle);
-      const opacity = randomNumBetween(0.4 , 0.9 );
+      const opacity = randomNumBetween(0.5 , 0.7 );
       const _colorDeg = randomNumBetween(-20 , 20 ) + colorDeg;
       this.particles.push(new Particle(x, y, vx, vy, opacity, _colorDeg ));
     }
@@ -89,7 +89,7 @@ class Canvas extends CanvasOption{
         particle.update();
         particle.draw();
 
-        if(Math.random() < 0.1) this.sparks.push(new Spark(particle.x, particle.y,0 ,0 , 0.3, 45))
+        if(Math.random() < 0.1) this.sparks.push(new Spark(particle.x, particle.y, 0 ,0 , 0.2, 45))
 
         if(particle.opacity < 0 ){
           this.particles.splice(index, 1);
