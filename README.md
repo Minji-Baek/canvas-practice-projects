@@ -1,6 +1,11 @@
 # canvas-practice-projects
 Canvas를 활용한 projects
 
+## projects 1 Particle-page
+
+  - css효과를 통해 물방울이 떨어지는 effect를 만들 수 있다. 
+
+  <img src="./readMeIMG/particle-page.gif">
 
 
 ## 이론
