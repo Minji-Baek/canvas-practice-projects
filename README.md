@@ -7,11 +7,48 @@ Canvas를 활용한 projects
 
   <img src="./readMeIMG/particle-page.gif" width="100%" height="100%">
 
+
 ## 2. projects [fire-effect]
 
   - 여러 particles을 2D 원형의 랜덤한 방향으로 퍼트려 불꽃놀이 effect를 만들었다.
 
   <img src="./readMeIMG/fire-effect.gif" width="100%" height="100%">
+
+
+## 3. projects [CountDown]
+  - 카운트 다운 후 particle들이 회오리 모양으로 흩어지는 effect 를 만들었다.
+
+    <img src="./readMeIMG/countdown-effect.gif" width="100%" height="100%">
+    
+
+    
+    *Key point!*
+    
+    1. angle에 가중치를 줬을 때
+   
+    <img src="./readMeIMG/countdown_angle.gif" width="100%" height="100%">
+
+    
+    
+    2. 반지름에 가중치를 줬을 때
+    
+    <img src="./readMeIMG/coundown_r.gif" width="100%" height="100%">
+
+    
+    
+    3. 반지름, angle에 가중치를 주어 이동시켰을 때
+    
+    <img src="./readMeIMG/countdown-effect.gif" width="100%" height="100%">
+
+    
+    
+    4. opacity가 0이 되면 실제 item 목록에서도 delete 시켜준다.
+    
+    <img src="./readMeIMG/countdown_particles_Delete.gif" width="100%" height="100%">
+
+
+
+
 
 
 ## 이론
@@ -97,6 +134,6 @@ Canvas를 활용한 projects
 
 #### 9. CDN gsap
       - java script로 animation 넣을때 활용하기 좋음
-      
+
 
 
