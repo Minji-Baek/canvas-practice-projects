@@ -38,7 +38,7 @@ Canvas를 활용한 projects
     
     3. 반지름, angle에 가중치를 주어 이동시켰을 때
     
-    <img src="./readMeIMG/countdown-effect.gif" width="100%" height="100%">
+    <img src="./readMeIMG/coundown_all.gif" width="100%" height="100%">
 
     
     
@@ -102,7 +102,7 @@ Canvas를 활용한 projects
       -- branch class-boilerplate 와 function-boilerplate로 관리할 예정이다.
 
 
-      
+
 
 #### 4. SVG img 활용
     /* filter: blur(50px) contrast(50); */
