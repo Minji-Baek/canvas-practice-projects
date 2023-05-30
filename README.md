@@ -7,11 +7,48 @@ Canvas를 활용한 projects
 
   <img src="./readMeIMG/particle-page.gif" width="100%" height="100%">
 
+
 ## 2. projects [fire-effect]
 
   - 여러 particles을 2D 원형의 랜덤한 방향으로 퍼트려 불꽃놀이 effect를 만들었다.
 
   <img src="./readMeIMG/fire-effect.gif" width="100%" height="100%">
+
+
+## 3. projects [CountDown]
+  - 카운트 다운 후 particle들이 회오리 모양으로 흩어지는 effect 를 만들었다.
+
+    <img src="./readMeIMG/countdown-effect.gif" width="100%" height="100%">
+    
+
+    
+    *Key point!*
+    
+    1. angle에 가중치를 줬을 때
+   
+    <img src="./readMeIMG/countdown_angle.gif" width="100%" height="100%">
+
+    
+    
+    2. 반지름에 가중치를 줬을 때
+    
+    <img src="./readMeIMG/coundown_r.gif" width="100%" height="100%">
+
+    
+    
+    3. 반지름, angle에 가중치를 주어 이동시켰을 때
+    
+    <img src="./readMeIMG/coundown_all.gif" width="100%" height="100%">
+
+    
+    
+    4. opacity가 0이 되면 실제 item 목록에서도 delete 시켜준다.
+    
+    <img src="./readMeIMG/countdown_particles_Delete.gif" width="100%" height="100%">
+
+
+
+
 
 
 ## 이론
@@ -64,6 +101,9 @@ Canvas를 활용한 projects
 
       -- branch class-boilerplate 와 function-boilerplate로 관리할 예정이다.
 
+
+
+
 #### 4. SVG img 활용
     /* filter: blur(50px) contrast(50); */
       => css로 물방울 effect 만들 수 있음
@@ -83,6 +123,9 @@ Canvas를 활용한 projects
     x = r * Math.cos(각도);
     y = r * Math.sin(각도);
 
+  - cos, sin 안의 각도는 라디안값이 들어가야 된다.
+     따라서 Math.PI / 180 * (각도deg) = 각도radian
+
 
 #### 7. hsla
     - 색을 각도로 표현 가능
@@ -95,5 +138,14 @@ Canvas를 활용한 projects
 
 #### 7. hsla
     - 색을 각도로 표현 가능
+
+
+#### 8. 마찰력, 가속도 표현   
+      - 1 미만 : 어느정도 올라 가다가 천천히 이동을 멈춘다.(마찰력)
+      - 1 이상 : 어느정도 올라 가다가 급격히 빠르게 올라가버린다.(가속도)
+
+#### 9. CDN gsap
+      - java script로 animation 넣을때 활용하기 좋음
+
 
 
