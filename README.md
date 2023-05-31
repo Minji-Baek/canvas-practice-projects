@@ -62,7 +62,7 @@ Canvas를 활용한 projects
   1. 위의 프로젝트와 다르게 deg의 범위를 부채꼴 만큼만 줄여 시작
 
 
-  <img src="./readMeIMG/countdown_particles_Delete.gif" width="100%" height="100%">
+  <img src="./readMeIMG/confetti_shape.gif" width="100%" height="100%">
 
   <br>
 
