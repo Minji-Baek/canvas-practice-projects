@@ -20,7 +20,7 @@ Canvas를 활용한 projects
 
     <img src="./readMeIMG/countdown-effect.gif" width="100%" height="100%">
     
-
+ 
     
     *Key point!*
     
@@ -46,8 +46,53 @@ Canvas를 활용한 projects
     
     <img src="./readMeIMG/countdown_particles_Delete.gif" width="100%" height="100%">
 
+## 4.  projects [Confetti]
+
+  - item들이 부채꼴 방향으로 빵빠레처럼 뿌려진다. 모양, 색, 방향, 각도 등이 custom 가능하다.
+    
+    <img src="./readMeIMG/confetti_full.gif" width="100%" height="100%">
+
+   <br>
+   
+
+  **Key point!**
+
+<br>
+
+  1. 위의 프로젝트와 다르게 deg의 범위를 부채꼴 만큼만 줄여 시작
 
 
+  <img src="./readMeIMG/confetti_shape.gif" width="100%" height="100%">
+
+  <br>
+
+  2. items 들을 rotate하고 랜덤하게 색 지정
+
+  <img src="./readMeIMG/confetti_color.gif" width="100%" height="100%">
+
+
+  <br>
+
+  3. 모양도 추가 할 수 있다. 
+
+  <img src="./readMeIMG/confetti_shape.gif" width="100%" height="100%">
+
+
+
+  <br>
+
+  4. **Confetti School** 
+    - x:0 y:0.5 deg:-50 + x:1 y:0.5 deg:-130 
+  <img src="./readMeIMG/confetti_school.gif" width="100%" height="100%">
+  
+  <br>
+
+  5. **Confetti Congratulation** 
+    - x:0 y:0 deg:45 + x:1 y:0 deg:135
+  <img src="./readMeIMG/confetti_congratulation.gif" width="100%" height="100%">
+
+
+<br>
 
 
 
@@ -59,6 +104,7 @@ Canvas를 활용한 projects
     - canvas style 조절만 하면 canvas의 기본 width, height = ( 300, 150 )  임으로 canvas style은 바뀌지만 내부 item의 비율이 이상해짐
     - style 보다 width,height이 작아져도 내부 item의 픽셀이 어그러짐
     => canvas.style.width,height 변경 시 canvas.width,height 도 같은 값으로 변경해야 함.
+    - rotate 함수는 x,y가 왼측 상단이 0.0 중심으로 rotate된다.
   
 #### 2. 선명도 높이는 법
     -- dpr 활용법
@@ -85,6 +131,8 @@ Canvas를 활용한 projects
       now = Date.now() // aimation 해당 시간
       delta = now - then // 지금 시간 - 전 애니메이션 시간 
       if (delta < interval) return // 지정 interval 보다 작으면 animation 안할거임
+
+      Math.cos()는 -1~1 사이의 값
 
 #####  3-1  window.requestAnimationFrame() 
 
