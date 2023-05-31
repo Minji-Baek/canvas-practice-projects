@@ -7,11 +7,93 @@ Canvas를 활용한 projects
 
   <img src="./readMeIMG/particle-page.gif" width="100%" height="100%">
 
+
 ## 2. projects [fire-effect]
 
   - 여러 particles을 2D 원형의 랜덤한 방향으로 퍼트려 불꽃놀이 effect를 만들었다.
 
   <img src="./readMeIMG/fire-effect.gif" width="100%" height="100%">
+
+
+## 3. projects [CountDown]
+  - 카운트 다운 후 particle들이 회오리 모양으로 흩어지는 effect 를 만들었다.
+
+    <img src="./readMeIMG/countdown-effect.gif" width="100%" height="100%">
+    
+ 
+    
+    *Key point!*
+    
+    1. angle에 가중치를 줬을 때
+   
+    <img src="./readMeIMG/countdown_angle.gif" width="100%" height="100%">
+
+    
+    
+    2. 반지름에 가중치를 줬을 때
+    
+    <img src="./readMeIMG/coundown_r.gif" width="100%" height="100%">
+
+    
+    
+    3. 반지름, angle에 가중치를 주어 이동시켰을 때
+    
+    <img src="./readMeIMG/coundown_all.gif" width="100%" height="100%">
+
+    
+    
+    4. opacity가 0이 되면 실제 item 목록에서도 delete 시켜준다.
+    
+    <img src="./readMeIMG/countdown_particles_Delete.gif" width="100%" height="100%">
+
+## 4.  projects [Confetti]
+
+  - item들이 부채꼴 방향으로 빵빠레처럼 뿌려진다. 모양, 색, 방향, 각도 등이 custom 가능하다.
+    
+    <img src="./readMeIMG/confetti_full.gif" width="100%" height="100%">
+
+   <br>
+   
+
+  **Key point!**
+
+<br>
+
+  1. 위의 프로젝트와 다르게 deg의 범위를 부채꼴 만큼만 줄여 시작
+
+
+  <img src="./readMeIMG/confetti_shape.gif" width="100%" height="100%">
+
+  <br>
+
+  2. items 들을 rotate하고 랜덤하게 색 지정
+
+  <img src="./readMeIMG/confetti_color.gif" width="100%" height="100%">
+
+
+  <br>
+
+  3. 모양도 추가 할 수 있다. 
+
+  <img src="./readMeIMG/confetti_shape.gif" width="100%" height="100%">
+
+
+
+  <br>
+
+  4. **Confetti School** 
+    - x:0 y:0.5 deg:-50 + x:1 y:0.5 deg:-130 
+  <img src="./readMeIMG/confetti_school.gif" width="100%" height="100%">
+  
+  <br>
+
+  5. **Confetti Congratulation** 
+    - x:0 y:0 deg:45 + x:1 y:0 deg:135
+  <img src="./readMeIMG/confetti_congratulation.gif" width="100%" height="100%">
+
+
+<br>
+
 
 
 ## 이론
@@ -22,6 +104,7 @@ Canvas를 활용한 projects
     - canvas style 조절만 하면 canvas의 기본 width, height = ( 300, 150 )  임으로 canvas style은 바뀌지만 내부 item의 비율이 이상해짐
     - style 보다 width,height이 작아져도 내부 item의 픽셀이 어그러짐
     => canvas.style.width,height 변경 시 canvas.width,height 도 같은 값으로 변경해야 함.
+    - rotate 함수는 x,y가 왼측 상단이 0.0 중심으로 rotate된다.
   
 #### 2. 선명도 높이는 법
     -- dpr 활용법
@@ -49,6 +132,8 @@ Canvas를 활용한 projects
       delta = now - then // 지금 시간 - 전 애니메이션 시간 
       if (delta < interval) return // 지정 interval 보다 작으면 animation 안할거임
 
+      Math.cos()는 -1~1 사이의 값
+
 #####  3-1  window.requestAnimationFrame() 
 
       메서드는 브라우저에게 수행하기를 원하는 애니메이션을 알리고 다음 리페인트 바로 전에 브라우저가 애니메이션을 업데이트할 지정된 함수를 호출하도록 요청합니다. 이 메서드는 리페인트 이전에 호출할 인수로 콜백을 받습니다.
@@ -61,6 +146,11 @@ Canvas를 활용한 projects
       - canvas size setting, 선명도, fps, animation, requestAnimationFrame 하는 부분이 현재 project에서 Boilerplate Code 로서 setting 하는 부분이기도 함
 
       - 컴퓨터 프로그래밍에서 보일러플레이트 또는 보일러플레이트 코드라고 부르는 것은 최소한의 변경으로 여러곳에서 재사용되며, 반복적으로 비슷한 형태를 띄는 코드를 말한다.
+
+      -- branch class-boilerplate 와 function-boilerplate로 관리할 예정이다.
+
+
+
 
 #### 4. SVG img 활용
     /* filter: blur(50px) contrast(50); */
@@ -81,8 +171,29 @@ Canvas를 활용한 projects
     x = r * Math.cos(각도);
     y = r * Math.sin(각도);
 
+  - cos, sin 안의 각도는 라디안값이 들어가야 된다.
+     따라서 Math.PI / 180 * (각도deg) = 각도radian
+
 
 #### 7. hsla
     - 색을 각도로 표현 가능
+#### 6. 원 모양 방향
+  - x, y 좌표는 가로 세로 직선 방향, random으로 item이 축을 따라 이동을 한다면 사각형 모양이 됨
+  - 원 모양으로 item들을 움직여서 만들고 싶다면 방향을 원을 반지름으로 향해야 됨
+    x = r * Math.cos(각도);
+    y = r * Math.sin(각도);
+
+
+#### 7. hsla
+    - 색을 각도로 표현 가능
+
+
+#### 8. 마찰력, 가속도 표현   
+      - 1 미만 : 어느정도 올라 가다가 천천히 이동을 멈춘다.(마찰력)
+      - 1 이상 : 어느정도 올라 가다가 급격히 빠르게 올라가버린다.(가속도)
+
+#### 9. CDN gsap
+      - java script로 animation 넣을때 활용하기 좋음
+
 
 
