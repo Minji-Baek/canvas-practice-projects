@@ -46,8 +46,53 @@ Canvas를 활용한 projects
     
     <img src="./readMeIMG/countdown_particles_Delete.gif" width="100%" height="100%">
 
+## 4.  projects [Confetti]
+
+  - item들이 부채꼴 방향으로 빵빠레처럼 뿌려진다. 모양, 색, 방향, 각도 등이 custom 가능하다.
+    
+    <img src="./readMeIMG/confetti_full.gif" width="100%" height="100%">
+
+   <br>
+   
+
+  **Key point!**
+
+<br>
+
+  1. 위의 프로젝트와 다르게 deg의 범위를 부채꼴 만큼만 줄여 시작
 
 
+  <img src="./readMeIMG/countdown_particles_Delete.gif" width="100%" height="100%">
+
+  <br>
+
+  2. items 들을 rotate하고 랜덤하게 색 지정
+
+  <img src="./readMeIMG/confetti_color.gif" width="100%" height="100%">
+
+
+  <br>
+
+  3. 모양도 추가 할 수 있다. 
+
+  <img src="./readMeIMG/confetti_shape.gif" width="100%" height="100%">
+
+
+
+  <br>
+
+  4. **Confetti School** 
+    - x:0 y:0.5 deg:-50 + x:1 y:0.5 deg:-130 
+  <img src="./readMeIMG/confetti_school.gif" width="100%" height="100%">
+  
+  <br>
+
+  5. **Confetti Congratulation** 
+    - x:0 y:0 deg:45 + x:1 y:0 deg:135
+  <img src="./readMeIMG/confetti_congratulation.gif" width="100%" height="100%">
+
+
+<br>
 
 
 
