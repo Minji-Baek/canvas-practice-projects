@@ -29,9 +29,9 @@ function init() {
   }
 
 
-  function createConfetti({x, y, count, deg}){
+  function createConfetti({x, y, count, deg, colors}){
     for(let i = 0; i < count ; i++){
-      particles.push(new Particle(x, y, deg))
+      particles.push(new Particle(x, y, deg, colors ))
     }
   }
 
@@ -52,6 +52,7 @@ function init() {
       for(let i = particles.length - 1; i >= 0; i--){
         particles[i].update();
         particles[i].draw(ctx);
+        if(particles[i].opacity < 0) particles.splice(i,1);
       }
      
       then = now - (delta % interval);
@@ -63,9 +64,10 @@ function init() {
   window.addEventListener('click', () => {
     createConfetti({
       x: 0,
-      y: canvasHeight / 2,
+      y: 0.5,
       count: 10,
-      deg: -50
+      deg: -50,
+      // colors:['#ff0000']
     });
   });
 

@@ -1,11 +1,11 @@
-import { randomNumBetween } from "./utils.js";
+import { hexToRgb, randomNumBetween } from "./utils.js";
 
 export default class Particle {
-  constructor(x, y, deg = 0){
+  constructor(x, y, deg = 0, colors){
     this.angle = Math.PI / 180 * randomNumBetween(deg - 30, deg + 30); // deg 중심 부채꼴 뿌리기 특정 각도 지정
 
-    this.x = x;
-    this.y = y;
+    this.x = x * innerWidth;
+    this.y = y * innerHeight;
     this.r = randomNumBetween(30, 100);
 
      
@@ -13,24 +13,55 @@ export default class Particle {
     this.vy = this.r * Math.sin(this.angle); // 가중치 더하기
 
     // this.friction = randomNumBetween(0.95, 0.97); //마찰력 곱
-    this.friction =  0.9; //마찰력 곱
+    this.friction =  0.89; //마찰력 곱
 
     this.gravity = 0.5; //중력 더하기
     
-    this.width = 30;
-    this.height = 30;
+    this.width = 12;
+    this.height = 12;
+
+    this.widthDel = randomNumBetween(0, 360);
+    this.heightDel =  randomNumBetween(0, 360);
+
+    this.rotaion = randomNumBetween(0, 360); //로테이션 값
+    this.rotationDel = randomNumBetween(-1, 1); //로테이션 값의 증가 값
+    this.opacity = 1;
+
+    this.colors = colors || ['#FF577F', '#FF884B', '#FFD384', '#FFF9B0']; // 초기 color 배열값
+    this.color = hexToRgb(
+      this.colors[
+        Math.floor(randomNumBetween(0, this.colors.length - 1)) //color 배열에서 랜덤
+        ]
+    )
   }
   update(){
     this.vy += this.gravity;
 
+    this.vx *= this.friction;
     this.vy *= this.friction;
-    this.xy *= this.friction;
 
     this.x += this.vx;
     this.y += this.vy;
+
+    this.opacity -= 0.005;
+
+    this.widthDel += 2;
+    this.heightDel += 2;
+    this.rotaion += this.rotationDel; 
   }
   draw(ctx){
-    ctx.fillStyle = `red`
-    ctx.fillRect(this.x, this.y, this.width, this.height);
+    ctx.translate(this.x + this.width * 1.2 , this.y + this.height* 1.2); //translate 중심을 x,y로, 넓이가 좀 넓어지면 item에 있는것 보다 자연스러워짐
+    ctx.rotate(Math.PI / 180 * this.rotation);
+    ctx.translate(-(this.x + this.width* 1.2), -(this.y + this.height* 1.2)); //translate 중심을 0,0로
+
+    ctx.fillStyle = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${this.opacity})` // color로 random하게 설정 가능
+    ctx.fillRect(
+      this.x, 
+      this.y, 
+      this.width * Math.cos( Math.PI / 180 * this.widthDel), 
+      this.height * Math.sin(Math.PI / 180 * this.heightDel)
+    );
+    ctx.resetTransform();
+
   }
 }
