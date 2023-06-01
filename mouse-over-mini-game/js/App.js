@@ -47,16 +47,26 @@ export default class App{
     
       if(delta < App.interval) return 
       App.ctx.clearRect(0, 0, App.width, App.height);
-
+      
+      
+      //배경
       this.backgrounds.forEach((background, index) => {
         // background.update();
         background.draw();
       })
 
-      this.walls.forEach((wall, index) => {
-        wall.update();
-        wall.draw();
-      })
+      //장애물
+      for( let i = this.walls.length - 1 ; i >= 0; i--){
+        this.walls[i].update();
+        this.walls[i].draw();
+
+        if(this.walls[i].isOutside) {this.walls.splice(i, 1); continue}
+
+        if(this.walls[i].canGenerateNext){
+          this.walls[i].generatedNext = true;
+          this.walls.push(new Wall({type: Math.random() > 0.3 ? 'SMALL' : 'BIG' }))
+        }
+      }
 
       then = now - (delta % App.interval);
 
