@@ -18,7 +18,7 @@ export default class App{
       new Background({img: document.querySelector('#bg1-img'), speed: -4})
     ]
     this.walls = [
-      new Wall({type: 'BIG' })
+      new Wall({type: 'SMALL' })
     ]
     window.addEventListener('resize', this.resize.bind(this)) //bind this 하면 현재 부모인 app class가 바인드 됨
   }
