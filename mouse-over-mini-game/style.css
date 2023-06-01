@@ -9,7 +9,6 @@ html, body {
   justify-content: center;
 
 }
-
-canvas {
-  border: 1px solid red;
+.asset-img{
+  display: none;
 }
