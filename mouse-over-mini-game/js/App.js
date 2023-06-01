@@ -1,4 +1,5 @@
 import Background from "./Background.js";
+import Wall from "./Wall.js";
 
 export default class App{
   //app 전역에서 사용할 값
@@ -15,6 +16,9 @@ export default class App{
       new Background({img: document.querySelector('#bg3-img'), speed: -1}),
       new Background({img: document.querySelector('#bg2-img'), speed: -2}),
       new Background({img: document.querySelector('#bg1-img'), speed: -4})
+    ]
+    this.walls = [
+      new Wall({type: 'BIG' })
     ]
     window.addEventListener('resize', this.resize.bind(this)) //bind this 하면 현재 부모인 app class가 바인드 됨
   }
@@ -45,8 +49,13 @@ export default class App{
       App.ctx.clearRect(0, 0, App.width, App.height);
 
       this.backgrounds.forEach((background, index) => {
-        background.update();
+        // background.update();
         background.draw();
+      })
+
+      this.walls.forEach((wall, index) => {
+        wall.update();
+        wall.draw();
       })
 
       then = now - (delta % App.interval);
