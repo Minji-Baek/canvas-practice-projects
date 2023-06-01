@@ -150,8 +150,6 @@ Canvas를 활용한 projects
       -- branch class-boilerplate 와 function-boilerplate로 관리할 예정이다.
 
 
-
-
 #### 4. SVG img 활용
     /* filter: blur(50px) contrast(50); */
       => css로 물방울 effect 만들 수 있음
@@ -195,5 +193,9 @@ Canvas를 활용한 projects
 #### 9. CDN gsap
       - java script로 animation 넣을때 활용하기 좋음
 
-
+#### 10. .bind(this)?
+      - .bind this 하면 현재 부모인 class가 바인드 되어 변수나 함수를 이벤트로 this를 통해 쓸 수 있으므로 용이
+      ex) window.addEventListener('resize', this.resise.bind(this))
+      => .bind(this)하지 않으면 처음에 this.resise()안에 이벤트는 부모 class를 가르키다가 window로 바뀜
+      
 
