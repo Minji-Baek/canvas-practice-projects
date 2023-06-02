@@ -1,4 +1,5 @@
 import Background from "./Background.js";
+import Coin from "./Coin.js";
 import Player from "./Player.js";
 import Wall from "./Wall.js";
 
@@ -22,6 +23,11 @@ export default class App{
       new Wall({type: 'SMALL' })
     ];
     this.player = new Player(Math.random() > 0.3 ? 'blue-bird' : 'bird');
+    this.coins = [
+      // new Coin( 700+this.walls[0].width /2,
+      // this.walls[0].y2 - this.walls[0].gapY / 2) //test, 랜덤 timing에  넣어줄 예정
+    ]
+
     window.addEventListener('resize', this.resize.bind(this)) //bind this 하면 현재 부모인 app class가 바인드 됨
   }
 
@@ -51,24 +57,39 @@ export default class App{
       App.ctx.clearRect(0, 0, App.width, App.height);
       
       
-      //배경
+      //Background
       this.backgrounds.forEach((background, index) => {
         // background.update();
         background.draw();
       })
 
-      //장애물
+      //Wall
       for( let i = this.walls.length - 1 ; i >= 0; i--){
-        this.walls[i].update();
+
+        
+        // this.walls[i].update();
         this.walls[i].draw();
 
-        if(this.walls[i].isOutside) {this.walls.splice(i, 1); continue}
+        //장애물 삭제
+        // if(this.walls[i].isOutside) {this.walls.splice(i, 1); continue}
+        if(this.walls[i].isOutside) {this.walls.shift(); continue}
 
+
+        //장애물 생성
         if(this.walls[i].canGenerateNext){
           this.walls[i].generatedNext = true;
-          this.walls.push(new Wall({type: Math.random() > 0.3 ? 'SMALL' : 'BIG' }))
+          const newWall = new Wall({type: Math.random() > 0.3 ? 'SMALL' : 'BIG' })
+          this.walls.push(newWall)
+          
+          if(Math.random() < 0.5 ){
+            const x = newWall.x + newWall.width / 2;
+            const y = newWall.y2 - newWall.gapY / 2;
+            this.coins.push(new Coin(x, y, newWall.vx))
+          }
+        
         }
 
+        //player과 충돌
         if(this.walls[i].isColliding(this.player.boundingBox)){
           this.player.boundingBox.color = `rgba(255, 0, 0, 0.3)`
         } else{
@@ -77,12 +98,28 @@ export default class App{
         }
       }
 
-      this.player.update();
+      //player
+      // this.player.update();
       this.player.draw();
+
+      //Coin
+      for( let i = this.coins.length -1 ; i >= 0; i--){
+        // this.coins[i].update();
+        this.coins[i].draw();
+
+        if(this.coins[i].x + this.coins[i].width < 0){
+          this.coins.shift();
+          continue;
+        }
+
+        if(this.coins[i].boundingBox.isColliding(this.player.boundingBox)){
+          this.coins.splice(i ,1);
+        }
+      }
+      
 
 
       then = now - (delta % App.interval);
-
     }
     requestAnimationFrame(frame);
   }

@@ -198,4 +198,8 @@ Canvas를 활용한 projects
       ex) window.addEventListener('resize', this.resise.bind(this))
       => .bind(this)하지 않으면 처음에 this.resise()안에 이벤트는 부모 class를 가르키다가 window로 바뀜
       
+#### 11. splice vs shift 
+  
+  
 
+  출처 : https://velog.io/@dorito/JavaScript-Splice-vs-Shift-%EC%86%8D%EB%8F%84-%EC%B0%A8%EC%9D%B4-%EA%B6%81%EA%B8%88%ED%95%B4%EC%84%9C-%EA%B5%AC%EA%B8%80%EB%A7%81-z9aiz4b1

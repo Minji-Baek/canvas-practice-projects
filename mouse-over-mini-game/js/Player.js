@@ -38,8 +38,7 @@ export default class Player {
 
   update(){
 
-    this.counter += 1
-    if(this.counter % 2 === 0)
+    if(++this.counter % 2 === 0)
       this.frameX = ++ this.frameX % this.imgCnt;
 
     this.vy += this.gravity;
@@ -53,6 +52,6 @@ export default class Player {
       this.img.width / this.imgCnt * this.frameX, 0, this.img.width / this.imgCnt, this.img.height,
       this.x, this.y, this.width, this.height
     );
-    this.boundingBox.draw();
+    // this.boundingBox.draw();
   }
 }
