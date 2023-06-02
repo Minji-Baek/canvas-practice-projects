@@ -1,6 +1,7 @@
 import Background from "./Background.js";
 import Coin from "./Coin.js";
 import Player from "./Player.js";
+import Score from "./Score.js";
 import Wall from "./Wall.js";
 
 export default class App{
@@ -26,8 +27,8 @@ export default class App{
     this.coins = [
       // new Coin( 700+this.walls[0].width /2,
       // this.walls[0].y2 - this.walls[0].gapY / 2) //test, 랜덤 timing에  넣어줄 예정
-    ]
-
+    ];
+    this.score = new Score();
     window.addEventListener('resize', this.resize.bind(this)) //bind this 하면 현재 부모인 app class가 바인드 됨
   }
 
@@ -59,7 +60,7 @@ export default class App{
       
       //Background
       this.backgrounds.forEach((background, index) => {
-        // background.update();
+        background.update();
         background.draw();
       })
 
@@ -67,7 +68,7 @@ export default class App{
       for( let i = this.walls.length - 1 ; i >= 0; i--){
 
         
-        // this.walls[i].update();
+        this.walls[i].update();
         this.walls[i].draw();
 
         //장애물 삭제
@@ -99,12 +100,12 @@ export default class App{
       }
 
       //player
-      // this.player.update();
+      this.player.update();
       this.player.draw();
 
       //Coin
       for( let i = this.coins.length -1 ; i >= 0; i--){
-        // this.coins[i].update();
+        this.coins[i].update();
         this.coins[i].draw();
 
         if(this.coins[i].x + this.coins[i].width < 0){
@@ -114,10 +115,12 @@ export default class App{
 
         if(this.coins[i].boundingBox.isColliding(this.player.boundingBox)){
           this.coins.splice(i ,1);
+          this.score.coinCount++;
         }
       }
       
-
+      this.score.update();
+      this.score.draw();
 
       then = now - (delta % App.interval);
     }
