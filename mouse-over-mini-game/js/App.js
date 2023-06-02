@@ -21,7 +21,7 @@ export default class App{
     this.walls = [
       new Wall({type: 'SMALL' })
     ];
-    this.player = new Player();
+    this.player = new Player(Math.random() > 0.3 ? 'blue-bird' : 'bird');
     window.addEventListener('resize', this.resize.bind(this)) //bind this 하면 현재 부모인 app class가 바인드 됨
   }
 
