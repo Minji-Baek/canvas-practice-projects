@@ -30,6 +30,7 @@ export default class Player {
     this.gravity = 0.2;
 
     App.canvas.addEventListener("click", ()=> {
+      this.frameX = 2;
       this.vy += -4;
     });
 
@@ -41,8 +42,8 @@ export default class Player {
     if(++this.counter % 2 === 0)
       this.frameX = ++ this.frameX % this.imgCnt;
 
-    this.vy += this.gravity;
-    this.y += this.vy;
+    // this.vy += this.gravity;
+    // this.y += this.vy;
     this.boundingBox.y = this.y + this.updateY;
 
   }
