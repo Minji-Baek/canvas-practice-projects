@@ -45,7 +45,7 @@ export default class App{
       requestAnimationFrame(frame);
     
       now = Date.now();
-      delta = now - delta;
+      delta = now - then;
     
       if(delta < App.interval) return 
       App.ctx.clearRect(0, 0, App.width, App.height);
@@ -72,7 +72,7 @@ export default class App{
 
       this.player.update();
       this.player.draw();
-      
+
 
       then = now - (delta % App.interval);
 

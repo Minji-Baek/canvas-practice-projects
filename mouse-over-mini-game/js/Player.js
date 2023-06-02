@@ -12,6 +12,12 @@ export default class Player {
     // this.height = this.width * (96/140);
     this.frameX = 0; // 몇번째 IMG
     this.counter = 0;
+
+    this.vy = -10; //속도
+    this.gravity = 0.3;
+    App.canvas.addEventListener("click", ()=> {
+      this.vy += -5;
+    })  
   }
 
   update(){
@@ -21,6 +27,9 @@ export default class Player {
     this.counter += 1
     if(this.counter % 2 === 0)
       this.frameX = ++this.frameX % 9;
+
+    this.vy += this.gravity;
+    this.y += this.vy;
   }
   draw(){
     App.ctx.drawImage(
