@@ -18,13 +18,13 @@ class Canvas extends CanvasOption{
   render(){
     let now, delta;
     let then = Date.now();
+
     
     const frame = ()=> {
       requestAnimationFrame(frame);
     
       now = Date.now();
       delta = now - then;
-      delta = now - delta;
     
       if(delta < this.interval) return 
     
