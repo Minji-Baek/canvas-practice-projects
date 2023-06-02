@@ -42,8 +42,8 @@ export default class Player {
     if(++this.counter % 2 === 0)
       this.frameX = ++ this.frameX % this.imgCnt;
 
-    // this.vy += this.gravity;
-    // this.y += this.vy;
+    this.vy += this.gravity;
+    this.y += this.vy;
     this.boundingBox.y = this.y + this.updateY;
 
   }

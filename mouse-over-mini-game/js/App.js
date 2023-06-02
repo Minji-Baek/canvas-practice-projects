@@ -1,5 +1,6 @@
 import Background from "./Background.js";
 import Coin from "./Coin.js";
+import GameHandler from "./GameHandler.js";
 import Player from "./Player.js";
 import Score from "./Score.js";
 import Wall from "./Wall.js";
@@ -20,6 +21,12 @@ export default class App{
       new Background({img: document.querySelector('#bg2-img'), speed: -2}),
       new Background({img: document.querySelector('#bg1-img'), speed: -4})
     ]
+    this.gameHandler = new GameHandler(this);
+    // window.addEventListener('resize', this.init.bind(this)) //bind this 하면 현재 부모인 app class가 바인드 됨
+    this.reset();
+  }
+
+  reset(){
     this.walls = [
       new Wall({type: 'SMALL' })
     ];
@@ -29,18 +36,15 @@ export default class App{
       // this.walls[0].y2 - this.walls[0].gapY / 2) //test, 랜덤 timing에  넣어줄 예정
     ];
     this.score = new Score();
-    window.addEventListener('resize', this.resize.bind(this)) //bind this 하면 현재 부모인 app class가 바인드 됨
   }
 
-  resize(){
+  init(){
     App.canvas.width = App.width * App.dpr;
     App.canvas.height = App.height * App.dpr;
     App.ctx.scale(App.dpr, App.dpr);
-
-    const width = innerWidth > innerHeight ? innerHeight * 0.9 : innerWidth * 0.9 ; 
-    //가로 > 세로: 가로 = innerheight 0.9,  가로 < 세로: 가로 = innerWidth * 0.9
-    App.canvas.style.width = width + 'px';
-    App.canvas.style.height = width * (3 / 4) + 'px'; // 4:3 비율
+    this.backgrounds.forEach((background, index) => {
+      background.draw();
+    })
   }
 
   render(){
@@ -54,7 +58,10 @@ export default class App{
       now = Date.now();
       delta = now - then;
     
-      if(delta < App.interval) return 
+      if(delta < App.interval) return ;
+
+      if(this.gameHandler.status !== 'PLAYING') return;
+
       App.ctx.clearRect(0, 0, App.width, App.height);
       
       
@@ -92,16 +99,18 @@ export default class App{
 
         //player과 충돌
         if(this.walls[i].isColliding(this.player.boundingBox)){
-          this.player.boundingBox.color = `rgba(255, 0, 0, 0.3)`
-        } else{
-          this.player.boundingBox.color = `rgba(0, 0, 255, 0.3)`
-
+          this.gameHandler.status = 'FINISH'
+          break;
         }
       }
 
       //player
       this.player.update();
       this.player.draw();
+
+      if(this.player.y >= App.height || this.player.y + this.player.height <= 0){
+        this.gameHandler.status = 'FINISH'
+      }
 
       //Coin
       for( let i = this.coins.length -1 ; i >= 0; i--){
