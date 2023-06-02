@@ -8,6 +8,7 @@ Canvas를 활용한 projects
   <img src="./readMeIMG/particle-page.gif" width="100%" height="100%">
 
 
+
 ## 2. projects [fire-effect]
 
   - 여러 particles을 2D 원형의 랜덤한 방향으로 퍼트려 불꽃놀이 effect를 만들었다.
@@ -62,20 +63,20 @@ Canvas를 활용한 projects
   1. 위의 프로젝트와 다르게 deg의 범위를 부채꼴 만큼만 줄여 시작
 
 
-  <img src="./readMeIMG/confetti_shape.gif" width="100%" height="100%">
+  <img src="./readMeIMG/confetti_shape.gif" width="100%" height="80%">
 
   <br>
 
   2. items 들을 rotate하고 랜덤하게 색 지정
 
-  <img src="./readMeIMG/confetti_color.gif" width="100%" height="100%">
+  <img src="./readMeIMG/confetti_color.gif" width="100%" height="80%">
 
 
   <br>
 
   3. 모양도 추가 할 수 있다. 
 
-  <img src="./readMeIMG/confetti_shape.gif" width="100%" height="100%">
+  <img src="./readMeIMG/confetti_shape.gif" width="100%" height="80%">
 
 
 
@@ -92,7 +93,22 @@ Canvas를 활용한 projects
   <img src="./readMeIMG/confetti_congratulation.gif" width="100%" height="100%">
 
 
-<br>
+  <br>
+
+## 5.  projects [Mini-Click-Game]
+
+  - click 하여 케릭터를 날게 할수 있다. 코인을 먹으며 화면을 벗어나거나 장애물에 부딪히지 않게 멀리 가는 게임이다.
+    
+    게임 url:  https://minji-baek.github.io/canvas-practice-projects/
+    
+    <img src="./readMeIMG/miniGame_full.gif" width="100%" height="100%">
+
+   <br>
+   
+  1. 랜덤으로 케릭터, 장애물, 코인 확률 생성 된다. 장애물 충돌, 화면 이탈시 게임 종료 되며 현재 play m와 코인 갯수가 표시 되며 replay 버튼 표출 된다.
+
+  <img src="./readMeIMG/miniGame_set.gif" width="100%" height="100%">
+
 
 
 
@@ -134,6 +150,8 @@ Canvas를 활용한 projects
 
       Math.cos()는 -1~1 사이의 값
 
+      Math.cos()는 -1~1 사이의 값
+
 #####  3-1  window.requestAnimationFrame() 
 
       메서드는 브라우저에게 수행하기를 원하는 애니메이션을 알리고 다음 리페인트 바로 전에 브라우저가 애니메이션을 업데이트할 지정된 함수를 호출하도록 요청합니다. 이 메서드는 리페인트 이전에 호출할 인수로 콜백을 받습니다.
@@ -150,8 +168,6 @@ Canvas를 활용한 projects
       -- branch class-boilerplate 와 function-boilerplate로 관리할 예정이다.
 
 
-
-
 #### 4. SVG img 활용
     /* filter: blur(50px) contrast(50); */
       => css로 물방울 effect 만들 수 있음
@@ -165,6 +181,11 @@ Canvas를 활용한 projects
 
   -- <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js" integrity="sha512-WoO4Ih0CDOSLYafy22wZD/mcJ7k0ESLqtQsFa6zFKnEUrbtuGU+GkLtVhgt93xa2qewG5gKEC6CWlN8OaCTSVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+  mini 게임 중에
+  gsap.to(this.playBtn, {
+      scale: 1, duration: 1, ease: Elastic.easeOut.config(2, 0.5), delay: 0.5 })
+   //gsap Ease option 중 하나, elastic.easeOut.config(값이 변화되는 크기, 바운스되는 정도) 
+
 #### 6. 원 모양 방향
   - x, y 좌표는 가로 세로 직선 방향, random으로 item이 축을 따라 이동을 한다면 사각형 모양이 됨
   - 원 모양으로 item들을 움직여서 만들고 싶다면 방향을 원을 반지름으로 향해야 됨
@@ -174,19 +195,8 @@ Canvas를 활용한 projects
   - cos, sin 안의 각도는 라디안값이 들어가야 된다.
      따라서 Math.PI / 180 * (각도deg) = 각도radian
 
-
 #### 7. hsla
     - 색을 각도로 표현 가능
-#### 6. 원 모양 방향
-  - x, y 좌표는 가로 세로 직선 방향, random으로 item이 축을 따라 이동을 한다면 사각형 모양이 됨
-  - 원 모양으로 item들을 움직여서 만들고 싶다면 방향을 원을 반지름으로 향해야 됨
-    x = r * Math.cos(각도);
-    y = r * Math.sin(각도);
-
-
-#### 7. hsla
-    - 색을 각도로 표현 가능
-
 
 #### 8. 마찰력, 가속도 표현   
       - 1 미만 : 어느정도 올라 가다가 천천히 이동을 멈춘다.(마찰력)
@@ -195,5 +205,12 @@ Canvas를 활용한 projects
 #### 9. CDN gsap
       - java script로 animation 넣을때 활용하기 좋음
 
+#### 10. .bind(this)?
+      - .bind this 하면 현재 부모인 class가 바인드 되어 변수나 함수를 이벤트로 this를 통해 쓸 수 있으므로 용이
+      ex) window.addEventListener('resize', this.resise.bind(this))
+      => .bind(this)하지 않으면 처음에 this.resise()안에 이벤트는 부모 class를 가르키다가 window로 바뀜
+      
+#### 11. splice vs shift 
 
-
+      첫 번째 인자를 빼는 형식 이라면 splice보다 shift가 매우 빠르다. 익숙함에 속지말고 shift를 쓰도록 하자.
+      출처 : https://velog.io/@dorito/JavaScript-Splice-vs-Shift-%EC%86%8D%EB%8F%84-%EC%B0%A8%EC%9D%B4-%EA%B6%81%EA%B8%88%ED%95%B4%EC%84%9C-%EA%B5%AC%EA%B8%80%EB%A7%81-z9aiz4b1
