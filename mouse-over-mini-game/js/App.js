@@ -1,4 +1,5 @@
 import Background from "./Background.js";
+import Player from "./Player.js";
 import Wall from "./Wall.js";
 
 export default class App{
@@ -19,7 +20,8 @@ export default class App{
     ]
     this.walls = [
       new Wall({type: 'SMALL' })
-    ]
+    ];
+    this.player = new Player();
     window.addEventListener('resize', this.resize.bind(this)) //bind this 하면 현재 부모인 app class가 바인드 됨
   }
 
@@ -57,7 +59,7 @@ export default class App{
 
       //장애물
       for( let i = this.walls.length - 1 ; i >= 0; i--){
-        this.walls[i].update();
+        // this.walls[i].update();
         this.walls[i].draw();
 
         if(this.walls[i].isOutside) {this.walls.splice(i, 1); continue}
@@ -67,6 +69,10 @@ export default class App{
           this.walls.push(new Wall({type: Math.random() > 0.3 ? 'SMALL' : 'BIG' }))
         }
       }
+
+      this.player.update();
+      this.player.draw();
+      
 
       then = now - (delta % App.interval);
 
