@@ -59,7 +59,7 @@ export default class App{
 
       //장애물
       for( let i = this.walls.length - 1 ; i >= 0; i--){
-        // this.walls[i].update();
+        this.walls[i].update();
         this.walls[i].draw();
 
         if(this.walls[i].isOutside) {this.walls.splice(i, 1); continue}
@@ -67,6 +67,13 @@ export default class App{
         if(this.walls[i].canGenerateNext){
           this.walls[i].generatedNext = true;
           this.walls.push(new Wall({type: Math.random() > 0.3 ? 'SMALL' : 'BIG' }))
+        }
+
+        if(this.walls[i].isColliding(this.player.boundingBox)){
+          this.player.boundingBox.color = `rgba(255, 0, 0, 0.3)`
+        } else{
+          this.player.boundingBox.color = `rgba(0, 0, 255, 0.3)`
+
         }
       }
 

@@ -1,5 +1,6 @@
 
 import App from "./App.js";
+import BoundingBox from "./BoundingBox.js";
 export default class Player {
   constructor(){
     this.img = document.querySelector('#blue-bird-img');
@@ -14,10 +15,13 @@ export default class Player {
     this.counter = 0;
 
     this.vy = -10; //속도
-    this.gravity = 0.3;
+    this.gravity = 0.2;
     App.canvas.addEventListener("click", ()=> {
-      this.vy += -5;
-    })  
+      this.vy += -4;
+    });
+
+    this.boundingBox = new BoundingBox(this.x + 1, this.y + 20, this.width - 9, this.height - 26 ); // 해당 상수는 img siz가 딱 그림에 맞지 않기 때문에 bound 조절 
+
   }
 
   update(){
@@ -30,6 +34,8 @@ export default class Player {
 
     this.vy += this.gravity;
     this.y += this.vy;
+    this.boundingBox.y = this.y + 20;
+
   }
   draw(){
     App.ctx.drawImage(
@@ -37,6 +43,7 @@ export default class Player {
       // this.img.width/15, 0, this.img.width / 15, this.img.height,
       this.img.width / 9 * this.frameX, 0, this.img.width / 9, this.img.height,
       this.x, this.y, this.width, this.height
-    )
+    );
+    this.boundingBox.draw();
   }
 }
