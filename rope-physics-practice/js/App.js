@@ -1,4 +1,5 @@
 import Dot from "./Dot.js";
+import Mouse from "./Mouse.js";
 import Stick from "./Stick.js";
 
 export default class App {
@@ -15,14 +16,18 @@ export default class App {
     this.resize();
     window.addEventListener('resize',this.resize.bind(this));
 
-    this.dots = [new Dot(400, 50),new Dot(500, 100),new Dot(600, 50),new Dot(800, 0), ];
+    this.dots = [new Dot(400, 50),new Dot(500, 100), new Dot(600, 50),new Dot(800, 0)  ];
 
     this.sticks = [
       new Stick(this.dots[0], this.dots[1]),
       new Stick(this.dots[1], this.dots[2]),
       new Stick(this.dots[2], this.dots[3]),
+     
     ];
     this.dots[0].pinned = true;
+
+
+    this.mouse = new Mouse(this.canvas);
   }
   resize(){
     App.width = innerWidth;
@@ -51,12 +56,17 @@ export default class App {
       this.ctx.clearRect(0, 0, App.width, App.height);
 
       //object그리기
-      this.dots.forEach((dot, index)=> {
-        dot.update();
+      this.dots.forEach(dot=> {
+        dot.update(this.mouse);
+      });
+      this.sticks.forEach(stick=> {
+        stick.update();
+      })
+
+      this.dots.forEach(dot=> {
         dot.draw(this.ctx);
       });
-      this.sticks.forEach((stick, index)=> {
-        stick.update();
+      this.sticks.forEach(stick=> {
         stick.draw(this.ctx);
       })
 

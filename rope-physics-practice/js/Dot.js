@@ -12,7 +12,7 @@ export default class Dot {
 
     this.mass = 1;
   }
-  update(){
+  update(mouse){
     if(this.pinned) return;
     let vel = Vector.sub(this.pos, this.oldPos);//속도 //이전, 현재 위치를 통해 구해진 값
     this.oldPos.setXY(this.pos.x, this.pos.y);
@@ -21,8 +21,24 @@ export default class Dot {
     vel.add(this.gravity); // 현재 중력 표현
     // vel.y += 0.1; 중력값 예전 표현
 
-    console.log(vel);
     this.pos.add(vel);
+
+    //mouse 공 event
+    // 힘(force)공식 원의 중심 = 1, 원의 밖 = 0 ::::: 1-(dist/radius)
+
+    let { x: dx, y: dy} = Vector.sub(mouse.pos, this.pos);
+
+    const dist = Math.sqrt(dx*dx + dy*dy); //거리
+
+    if(dist > mouse.radius) return ;
+
+    const direction = new Vector(dx / dist, dy / dist); //방향Vector
+    const force = (mouse.radius - dist) / mouse.radius; //힘
+
+    if(force > 0.8) this.pos.setXY(mouse.pos.x, mouse.pos.y)
+
+    else this.pos.add(direction.mult(force).mult(5));
+
 
   }
   draw(ctx){
