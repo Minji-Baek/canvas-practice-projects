@@ -21,7 +21,6 @@ export default class Dot {
     vel.add(this.gravity); // 현재 중력 표현
     // vel.y += 0.1; 중력값 예전 표현
 
-    this.pos.add(vel);
 
     //mouse 공 event
     // 힘(force)공식 원의 중심 = 1, 원의 밖 = 0 ::::: 1-(dist/radius)
@@ -30,14 +29,17 @@ export default class Dot {
 
     const dist = Math.sqrt(dx*dx + dy*dy); //거리
 
-    if(dist > mouse.radius) return ;
+    // if(dist > mouse.radius) return ;
 
     const direction = new Vector(dx / dist, dy / dist); //방향Vector
-    const force = (mouse.radius - dist) / mouse.radius; //힘
+    const force = Math.max((mouse.radius - dist) / mouse.radius, 0); //힘 //0보다 작으면 계속 0
 
     if(force > 0.8) this.pos.setXY(mouse.pos.x, mouse.pos.y)
 
-    else this.pos.add(direction.mult(force).mult(5));
+    else {
+      this.pos.add(vel); // stick 업데이트 하고 pos 옮겨졌을 수 있으니 
+
+      this.pos.add(direction.mult(force).mult(5));}
 
 
   }
