@@ -133,7 +133,7 @@ Canvas를 활용한 projects
 
 
 
-  
+
 
 ## 이론
 
@@ -237,3 +237,19 @@ Canvas를 활용한 projects
 
       첫 번째 인자를 빼는 형식 이라면 splice보다 shift가 매우 빠르다. 익숙함에 속지말고 shift를 쓰도록 하자.
       출처 : https://velog.io/@dorito/JavaScript-Splice-vs-Shift-%EC%86%8D%EB%8F%84-%EC%B0%A8%EC%9D%B4-%EA%B6%81%EA%B8%88%ED%95%B4%EC%84%9C-%EA%B5%AC%EA%B8%80%EB%A7%81-z9aiz4b1
+
+
+
+#### 12. Vite?
+
+  - Ex Module을 기반하여 네이티브 언어 수준
+  - 번들생성 과정이 없어 빌드 속도가 제일 빠름
+  - hml (실시간 화면 반영) 속도도 제일 빠름
+  - 초기 setting 도 webpack 보다 간편하게 제공
+  - package-lock? : moudule의 정확한 버젼 정보를 명시해줌. 자동 생성
+
+  #### React.StrictMode?
+
+    - react에서 자동으로 한번 랜더링을 실행시켜 주는것
+    - 실제 빌드해서 확인하면 돌아가지 않는다
+    - 기본으로 set 되있으니 번거롭다면 지울것
