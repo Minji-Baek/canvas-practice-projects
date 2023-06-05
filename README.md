@@ -110,7 +110,25 @@ Canvas를 활용한 projects
   <img src="./readMeIMG/miniGame_set.gif" width="100%" height="100%">
 
 
+## 6.  projects [Rope-physics]
 
+  - Vector 값을 구해 천장에 랜덤한 길이의 Rope들을 맨 끝에 전구 effect img를 붙여 랜덤한 위치에 매달아 천장의 조명 예제를 만들었다.
+    
+    <img src="./readMeIMG/miniGame_full.gif" width="100%" height="100%">
+
+   <br>
+
+
+  **Key point!**
+
+
+  1. 거리, 방향, 힘 의 값을 구하여 실제 물리 값과 유사하게 Vector함수를 만들어 물리엔진을 사용하였다.(중력, 마찰력 포함)
+
+  <img src="./readMeIMG/ropePhysics_full.gif" width="100%" height="100%">
+
+  2. 처음 만들어진 밧줄 길이보다 지정된 값보다 늘어났을 때 뽑히는 motion도 만들었다. 
+
+  <img src="./readMeIMG/ropePhysics_pull.gif" width="100%" height="100%">
 
 ## 이론
 
