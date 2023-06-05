@@ -1,5 +1,6 @@
 import Mouse from "./Mouse.js";
 import Rope from "./Rope.js";
+import { randomNumBetween } from "./utils.js";
 
 export default class App {
   static width = innerWidth;
@@ -17,13 +18,6 @@ export default class App {
 
     this.mouse = new Mouse(this.canvas);
 
-    this.ropes = [];
-    const rope_1 = new Rope({
-      x: 400,
-      y: 100,
-    })
-    rope_1.pin(0);
-    this.ropes.push(rope_1);
   }
   resize(){
     App.width = innerWidth;
@@ -36,6 +30,22 @@ export default class App {
     
     this.ctx.scale(App.dpr, App.dpr);
 
+    this.initRopes();
+
+  }
+  initRopes(){
+    this.ropes = [];
+    const TOTAL = App.width * 0.06;
+
+    for(let i = 0; i < TOTAL ; i ++){
+      const rope = new Rope({
+        x: randomNumBetween(App.width * 0.3, App.width *0.7),
+        y: 0,
+        gap: randomNumBetween(App.height * 0.05, App.height * 0.08)
+      })
+      rope.pin(0)
+      this.ropes.push(rope);
+    }
   }
   render(){
     let now, delta;
