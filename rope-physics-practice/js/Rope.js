@@ -33,7 +33,7 @@ export default class Rope {
     }
   }
   update(mouse){
-      this.checkPullingOut();
+      // this.checkPullingOut();
       //object그리기
       this.dots.forEach(dot=> {
         dot.update(mouse);
