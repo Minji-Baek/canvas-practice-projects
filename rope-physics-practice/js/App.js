@@ -59,16 +59,20 @@ export default class App {
       this.dots.forEach(dot=> {
         dot.update(this.mouse);
       });
-      this.sticks.forEach(stick=> {
-        stick.update();
-      })
+
+      for(let i = 0; i < 10; i++){
+        this.sticks.forEach(stick=> {
+          stick.update();
+        });
+      } // stick 업데이트를 10번 해서(계산을 많이 돌린다) side effect을 줄인다.
+    
 
       this.dots.forEach(dot=> {
         dot.draw(this.ctx);
       });
       this.sticks.forEach(stick=> {
         stick.draw(this.ctx);
-      })
+      });
 
 
       then = now - (delta % App.interval);
