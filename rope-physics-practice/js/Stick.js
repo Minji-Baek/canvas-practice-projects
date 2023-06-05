@@ -5,7 +5,7 @@ export default class Stick {
 
     this.length = this.startPoint.pos.dist(this.endPoint.pos);
 
-    this.tension = 0.3;
+    this.tension = 0.2;
   }
   update(){
     //늘어났을때 실제 길이(L)과 늘어난길이(dist)의 차이값의 /2 만큰 각 dot에서부터 계속 잘라 줄려주면 언젠가 L에 도달함 이란 느낌
