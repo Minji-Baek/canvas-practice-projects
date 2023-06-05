@@ -18,8 +18,8 @@ export default class Rope {
     this.dots[index].pinned = true;
   }
   checkPullingOut(){
-    const dist = this.dots[0].pos.dist(this.dots[1].pos); // L 보다 dist가 1.2배 커지면 pined를 품
-    if(dist/this.sticks[0].length > 1.4) { 
+    const dist = this.dots[0].pos.dist(this.dots[1].pos); // L 보다 dist가 1.3배 커지면 pined를 품
+    if(dist/this.sticks[0].length > 1.3) { 
       this.dots[0].pinned = false;
     }
   }
