@@ -6,6 +6,8 @@ const Nudake = () => {
   
   useEffect(() => {
     //return 후 실행
+
+    //canvas setting
     const canvas = canvasRef.current;
     const cavasParnet = canvas.parentNode;
     const ctx = canvas.getContext('2d');
@@ -23,21 +25,11 @@ const Nudake = () => {
 
     }
 
-    let frameId
-
-    function frame() {
-      frameId = requestAnimationFrame(frame);
-      console.count('frame');
-      ctx.fillRect(100, 100, 100, 100);
-    }
-
     window.addEventListener('resize', resize)
     resize();
-    requestAnimationFrame(frame);
 
-    return () => { //amount 될때 호출 animation 재귀호출 취소
+    return () => { //amount 될때 cleanUp 항목들
       window.removeEventListener('resize', resize)
-      cancelAnimationFrame(frameId);
     }
 
   }, [])
