@@ -130,6 +130,11 @@ Canvas를 활용한 projects
 
   <img src="./readMeIMG/ropePhysics_pull.gif" width="100%" height="100%">
 
+
+
+
+  
+
 ## 이론
 
 ### Canvas 유의점
