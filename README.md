@@ -253,3 +253,13 @@ Canvas를 활용한 projects
     - react에서 자동으로 한번 랜더링을 실행시켜 주는것
     - 실제 빌드해서 확인하면 돌아가지 않는다
     - 기본으로 set 되있으니 번거롭다면 지울것
+
+  #### <> </> === <React.Fragment />
+
+    - 하나의 ele만 return해야 할 때 같은 dep로 처리하돼 하나의 ele로 감싸줄 수 있는 react 기능
+
+
+  #### react 에서 canvas animation 사용시 유의할 점
+    - component amount시 animation cleanUp 무조건 해주기
+    - widow.addEventListener 사용하여 추가 한 event cleanUp도 무조건 해주기
+    
