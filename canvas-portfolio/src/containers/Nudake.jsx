@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react';
 import '../style/containers/Nudake.css';
-
+import throttle from 'lodash/throttle';
 import image1 from '../assets/nudake-1.jpg';
 import image2 from '../assets/nudake-2.jpg';
 import image3 from '../assets/nudake-3.jpg';
-import { getAngle, getDistance } from '../utils/utils';
+import { getAngle, getDistance, getScrupedPercent } from '../utils/utils';
 
 
 const Nudake = () => {
@@ -63,6 +63,7 @@ const Nudake = () => {
     const onMouseMove = (e)=> {
       console.log('onMouseMove')
       drawCircles(e);
+      checkPercent();
     }
     const drawCircles = (e)=> {
       const nextPos = {x: e.offsetX, y: e.offsetY};
@@ -81,6 +82,10 @@ const Nudake = () => {
       }
       prevPos = nextPos;
     }
+    const checkPercent = throttle(() => {
+      const percent = getScrupedPercent(ctx, canvasWidth, canvasHeight);
+      
+    },500)
 
     canvas.addEventListener('mousedown', onMouseDown);
     window.addEventListener('resize', resize)
