@@ -57,16 +57,16 @@ const Nudake = () => {
 
     function drawImage() {
       isChanging = true
-      // ctx.clearRect(0, 0, canvasWidth, canvasHeight);
       const image = loadedImgs[currentIndex];
-
-      gsap.to(canvas, {opacity: 0, duration: 1, onComplete: () => { //image 나타날때 부드럽게 나타나는 effect
+      const firstDrawing = ctx.globalCompositeOperation === 'source-over'
+      gsap.to(canvas, {opacity: 0, duration: firstDrawing ? 0 : 1 , onComplete: () => { //image 나타날때 부드럽게 나타나는 effect
         canvas.style.opacity = 1;
         ctx.globalCompositeOperation = 'source-over';
         drawImageCenter(canvas, ctx, image);
   
         const nextImg = imageSrcs[(currentIndex + 1) % imageSrcs.length];
         cavasParnet.style.backgroundImage = `url(${nextImg})`;
+        prevPos = null;
         isChanging = false;
       }})
 
@@ -96,6 +96,7 @@ const Nudake = () => {
 
     const drawCircles = (e)=> {
       const nextPos = {x: e.offsetX, y: e.offsetY};
+      if(!prevPos) prevPos = nextPos;
       const dist = getDistance(prevPos, nextPos);
       const angle = getAngle(prevPos, nextPos);
 
