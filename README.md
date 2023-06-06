@@ -263,3 +263,10 @@ Canvas를 활용한 projects
     - component amount시 animation cleanUp 무조건 해주기
     - widow.addEventListener 사용하여 추가 한 event cleanUp도 무조건 해주기
     
+  #### globalCompositeOperation = 'destination-out'
+      - 기존 image와 new의 차집합의 결과물을 나타낼 수 있다
+    : 현재 image 지우는 화면에서 마우스를 빠르게 이동하면 원의 형태로 지우게 됨
+    : 예전 위치와 현재 위치 사이에 적당한 갯수의 원을 더 그려주면 됨
+    : 원들의 위치를 일정하게 맞추려면 원들의 갯수을 선정, prevPos와 nextPos의 dist 값으로 중간 그려줄 pos값들 구해줌
+    => x= prevPos.x + Math.cos(각도)*(원의 갯수)
+    => y= prevPos.y + Math.sin(각도)*(원의 갯수)
