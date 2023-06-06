@@ -270,3 +270,5 @@ Canvas를 활용한 projects
     : 원들의 위치를 일정하게 맞추려면 원들의 갯수을 선정, prevPos와 nextPos의 dist 값으로 중간 그려줄 pos값들 구해줌
     => x= prevPos.x + Math.cos(각도)*(원의 갯수)
     => y= prevPos.y + Math.sin(각도)*(원의 갯수)
+  #### throttle(callback, 밀리초)
+   - 계속 실행되는 함수에서 지정된 밀리초 마다만 delay하여 실행
