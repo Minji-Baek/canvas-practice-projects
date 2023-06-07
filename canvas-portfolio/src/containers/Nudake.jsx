@@ -124,7 +124,7 @@ const Nudake = () => {
     window.addEventListener('resize', resize)
     resize();
 
-    return () => { //amount 될때 cleanUp 항목들
+    return () => { //unmount 될때 cleanUp 항목들
       window.removeEventListener('resize', resize);
       canvas.removeEventListener('mousedown', onMouseDown);
     }
