@@ -132,6 +132,13 @@ Canvas를 활용한 projects
 
 
 
+## 7.  projects [Canvas-Portpolio]
+
+  - React와 Canvas를 활용하여 Nudake 홈페이지를 clone 하여 이미지 파일들을 지우면서 넘겨 볼 수 있는 section을 구성하였고 하단엔 matter.js를 사용하여 편리하게 물리엔진을 이용한 section을 구성하였다.
+    
+    <img src="./readMeIMG/canvas_portfolio.gif" width="100%" height="100%">
+
+   <br>
 
 
 
