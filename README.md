@@ -260,7 +260,7 @@ Canvas를 활용한 projects
 
 
   #### react 에서 canvas animation 사용시 유의할 점
-    - component amount시 animation cleanUp 무조건 해주기
+    - component destroy시 animation cleanUp 무조건 해주기
     - widow.addEventListener 사용하여 추가 한 event cleanUp도 무조건 해주기
     
   #### globalCompositeOperation = 'destination-out'
@@ -270,5 +270,17 @@ Canvas를 활용한 projects
     : 원들의 위치를 일정하게 맞추려면 원들의 갯수을 선정, prevPos와 nextPos의 dist 값으로 중간 그려줄 pos값들 구해줌
     => x= prevPos.x + Math.cos(각도)*(원의 갯수)
     => y= prevPos.y + Math.sin(각도)*(원의 갯수)
+    
   #### throttle(callback, 밀리초)
-   - 계속 실행되는 함수에서 지정된 밀리초 마다만 delay하여 실행
+    - 계속 실행되는 함수에서 지정된 밀리초 마다만 delay하여 실행
+
+  #### canvas가 많을 때 cpu 최적화를 위해
+
+    - 화면에 표출 될 때만 canvas를 rendering 해야 한다.
+    - javascript 기본 api 중 intersectionObserver 사용하면 됨
+    - root: viewport(setting 안하면 기본이 viewport), observe: canvas(대상) 
+
+  #### component 사용시 모든 component들은  window나 다른 event를 추가했다면 꼭 cleanup 하여 성능을 보안 해야 한다.
+
+    - react의 경우 useEffect[] 에서 마지막에 return ()=>{ cleanup 코드} 를 해주면 된다.
+    - vue의 경우 destoyed, unmounted에 작성해주면 된다. 
