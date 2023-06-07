@@ -7,6 +7,7 @@ import IconCSS from '../assets/icon_CSS.png';
 import IconJS from '../assets/icon_JS.png';
 import IconREACT from '../assets/icon_REACT.png';
 import IconTHREE from '../assets/icon_THREE.png';
+import { entries } from 'lodash';
 
 const data = {
   'JS': { title: 'Javascript', level: 4, desc: '자바스크립트에 대한 설명이라고 할 수 있습니다. 자바스크립트에 대한 설명. 자바스크립트에 대한 설명.' },
@@ -28,7 +29,7 @@ const RotateCanvas = () => {
     const gravityPower = 0.5;
     let gravityDeg = 0;
 
-    let engine, render, runner, mouse, mouseConstraint;
+    let engine, render, runner, mouse, mouseConstraint, observer;
  
     const initScene = () =>{
       engine = Engine.create();
@@ -48,6 +49,9 @@ const RotateCanvas = () => {
         mouse: mouse
       });
       Composite.add(engine.world, mouseConstraint);
+      // 하단은 canvas 안에서 wheel 하면 전체 페이지 스크롤이 안되는 것을 수정하기 위한 코드
+      canvas.removeEventListener('mousewheel', mouse.mousewheel); 
+      canvas.removeEventListener('DOMMouseScroll', mouse.mousewheel);
 
     }
     const addRect = (x, y, w, h, options = {}) =>{
@@ -94,8 +98,27 @@ const RotateCanvas = () => {
       }
     }
 
+    const initIntersectionObserver = () =>{
+      const options = {
+        threshold: 0.1
+      }
+      observer = new IntersectionObserver(entries => {
+        const canvasEntry = entries[0];
+        if(canvasEntry.isIntersecting){
+          runner.enable = true;
+          Render.run(render);
+        } else{
+          runner.enable = false;
+          Render.stop(render);
+        }
+      }, options)
+      observer.observe(canvas);
+    }
+
     initScene();
     initMouse();
+    initIntersectionObserver();
+
     initGround();
     initImageBoxes();
 
@@ -110,6 +133,17 @@ const RotateCanvas = () => {
       engine.world.gravity.y = gravityPower * Math.sin(Math.PI / 180 * gravityDeg);
 
     })
+
+    return () =>{
+      observer.unobserve(canvas);
+
+      Composite.clear(engine.world);
+      Mouse.clearSourceEvents(mouse);
+      Runner.stop(runner);
+      Render.stop(render);
+      Engine.clear(engine);
+      //component amount 시 cleanUp
+    }
 
   },[])
   return (
