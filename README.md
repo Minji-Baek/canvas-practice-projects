@@ -130,6 +130,18 @@ Canvas를 활용한 projects
 
   <img src="./readMeIMG/ropePhysics_pull.gif" width="100%" height="100%">
 
+
+
+## 7.  projects [Canvas-Portpolio]
+
+  - React와 Canvas를 활용하여 Nudake 홈페이지를 clone 하여 이미지 파일들을 지우면서 넘겨 볼 수 있는 section을 구성하였고 하단엔 matter.js를 사용하여 편리하게 물리엔진을 이용한 section을 구성하였다.
+    
+    <img src="./readMeIMG/canvas_portfolio.gif" width="100%" height="100%">
+
+   <br>
+
+
+
 ## 이론
 
 ### Canvas 유의점
@@ -232,3 +244,50 @@ Canvas를 활용한 projects
 
       첫 번째 인자를 빼는 형식 이라면 splice보다 shift가 매우 빠르다. 익숙함에 속지말고 shift를 쓰도록 하자.
       출처 : https://velog.io/@dorito/JavaScript-Splice-vs-Shift-%EC%86%8D%EB%8F%84-%EC%B0%A8%EC%9D%B4-%EA%B6%81%EA%B8%88%ED%95%B4%EC%84%9C-%EA%B5%AC%EA%B8%80%EB%A7%81-z9aiz4b1
+
+
+
+#### 12. Vite?
+
+  - Ex Module을 기반하여 네이티브 언어 수준
+  - 번들생성 과정이 없어 빌드 속도가 제일 빠름
+  - hml (실시간 화면 반영) 속도도 제일 빠름
+  - 초기 setting 도 webpack 보다 간편하게 제공
+  - package-lock? : moudule의 정확한 버젼 정보를 명시해줌. 자동 생성
+
+  #### React.StrictMode?
+
+    - react에서 자동으로 한번 랜더링을 실행시켜 주는것
+    - 실제 빌드해서 확인하면 돌아가지 않는다
+    - 기본으로 set 되있으니 번거롭다면 지울것
+
+  #### <> </> === <React.Fragment />
+
+    - 하나의 ele만 return해야 할 때 같은 dep로 처리하돼 하나의 ele로 감싸줄 수 있는 react 기능
+
+
+  #### react 에서 canvas animation 사용시 유의할 점
+    - component destroy시 animation cleanUp 무조건 해주기
+    - widow.addEventListener 사용하여 추가 한 event cleanUp도 무조건 해주기
+    
+  #### globalCompositeOperation = 'destination-out'
+      - 기존 image와 new의 차집합의 결과물을 나타낼 수 있다
+    : 현재 image 지우는 화면에서 마우스를 빠르게 이동하면 원의 형태로 지우게 됨
+    : 예전 위치와 현재 위치 사이에 적당한 갯수의 원을 더 그려주면 됨
+    : 원들의 위치를 일정하게 맞추려면 원들의 갯수을 선정, prevPos와 nextPos의 dist 값으로 중간 그려줄 pos값들 구해줌
+    => x= prevPos.x + Math.cos(각도)*(원의 갯수)
+    => y= prevPos.y + Math.sin(각도)*(원의 갯수)
+    
+  #### throttle(callback, 밀리초)
+    - 계속 실행되는 함수에서 지정된 밀리초 마다만 delay하여 실행
+
+  #### canvas가 많을 때 cpu 최적화를 위해
+
+    - 화면에 표출 될 때만 canvas를 rendering 해야 한다.
+    - javascript 기본 api 중 intersectionObserver 사용하면 됨
+    - root: viewport(setting 안하면 기본이 viewport), observe: canvas(대상) 
+
+  #### component 사용시 모든 component들은  window나 다른 event를 추가했다면 꼭 cleanup 하여 성능을 보안 해야 한다.
+
+    - react의 경우 useEffect[] 에서 마지막에 return ()=>{ cleanup 코드} 를 해주면 된다.
+    - vue의 경우 destoyed, unmounted에 작성해주면 된다. 
