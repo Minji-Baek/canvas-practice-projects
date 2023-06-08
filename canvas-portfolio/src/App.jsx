@@ -1,18 +1,41 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ArrowImg from './assets/arrow.svg';
 import Nudake from './containers/Nudake';
 import RotateCanvas from './containers/RotateCanvas';
-function App() {
+import CountDown from './containers/CountDown';
+function App() { 
+  const [style, setStyle] = useState(true)
+
+  const changeDown = (data) =>{
+    setStyle(data)
+  };
+
+  useEffect(() => {
+    console.log("useEffectApp", style);
+    const appRef = document.querySelector(".app");
+    console.log("useEffectApp", appRef.style);
+    if(style)
+      appRef.style = "display: none" ;
+    else{
+      appRef.style = "display: inline";
+    }  
+  },[style])
+
+
   return (
     // <React.Fragment> === <>
     <>
-      <div className="app">
+    <div>
+     <CountDown changeDown={changeDown} />
+    </div>
+      <div className="app" >
+
         <section className="section-1">
           <header>
-            <h1>Portfolio</h1>
+            <h1>Canvas Portfolio</h1>
             <ul>
-              <li>instagram</li>
-              <li>twitter</li>
+              <li>minigame</li>
+              <li></li>
               <li>codepen</li>
             </ul>
           </header>
@@ -50,4 +73,7 @@ function App() {
   )
 }
 
+
 export default App
+
+

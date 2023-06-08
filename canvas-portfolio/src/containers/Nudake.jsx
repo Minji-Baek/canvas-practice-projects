@@ -16,6 +16,7 @@ const Nudake = () => {
 
     //canvas setting
     const canvas = canvasRef.current;
+    console.log(canvas);
     const cavasParnet = canvas.parentNode;
     const ctx = canvas.getContext('2d');
 
@@ -74,6 +75,7 @@ const Nudake = () => {
     }
 
     const onMouseDown = (e)=> {
+      console.log("mouseDouwn")
       if(isChanging) return
       canvas.addEventListener('mouseup', onMouseUp);
       canvas.addEventListener('mouseleave', onMouseUp);
