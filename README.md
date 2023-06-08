@@ -1,51 +1,6 @@
 # canvas-practice-projects
 Canvas를 활용한 projects
 
-## 1. projects [Particle-page]
-
-  - css효과를 통해 물방울이 떨어지는 effect를 만들 수 있다. 
-
-  <img src="./readMeIMG/particle-page.gif" width="100%" height="100%">
-
-
-## 2. projects [fire-effect]
-
-  - 여러 particles을 2D 원형의 랜덤한 방향으로 퍼트려 불꽃놀이 effect를 만들었다.
-
-  <img src="./readMeIMG/fire-effect.gif" width="100%" height="100%">
-
-
-## 3. projects [CountDown]
-  - 카운트 다운 후 particle들이 회오리 모양으로 흩어지는 effect 를 만들었다.
-
-    <img src="./readMeIMG/countdown-effect.gif" width="100%" height="100%">
-    
- 
-    
-    *Key point!*
-    
-    1. angle에 가중치를 줬을 때
-   
-    <img src="./readMeIMG/countdown_angle.gif" width="100%" height="100%">
-
-    
-    
-    2. 반지름에 가중치를 줬을 때
-    
-    <img src="./readMeIMG/coundown_r.gif" width="100%" height="100%">
-
-    
-    
-    3. 반지름, angle에 가중치를 주어 이동시켰을 때
-    
-    <img src="./readMeIMG/coundown_all.gif" width="100%" height="100%">
-
-    
-    
-    4. opacity가 0이 되면 실제 item 목록에서도 delete 시켜준다.
-    
-    <img src="./readMeIMG/countdown_particles_Delete.gif" width="100%" height="100%">
-
 ## 4.  projects [Confetti]
 
   - item들이 부채꼴 방향으로 빵빠레처럼 뿌려진다. 모양, 색, 방향, 각도 등이 custom 가능하다.
@@ -62,34 +17,39 @@ Canvas를 활용한 projects
   1. 위의 프로젝트와 다르게 deg의 범위를 부채꼴 만큼만 줄여 시작
 
 
-  <img src="./readMeIMG/confetti_shape.gif" width="100%" height="100%">
+  <img src="./readMeIMG/confetti_shape.gif" width="80%">
 
   <br>
+
 
   2. items 들을 rotate하고 랜덤하게 색 지정
 
-  <img src="./readMeIMG/confetti_color.gif" width="100%" height="100%">
+  <img src="./readMeIMG/confetti_color.gif" width="100%" >
 
 
   <br>
 
+
   3. 모양도 추가 할 수 있다. 
 
-  <img src="./readMeIMG/confetti_shape.gif" width="100%" height="100%">
+  <img src="./readMeIMG/confetti_shape.gif" width="80%" >
 
 
 
   <br>
 
   4. **Confetti School** 
+
     - x:0 y:0.5 deg:-50 + x:1 y:0.5 deg:-130 
-  <img src="./readMeIMG/confetti_school.gif" width="100%" height="100%">
+  <img src="./readMeIMG/confetti_school.gif" width="100%" >
   
+
   <br>
 
   5. **Confetti Congratulation** 
+
     - x:0 y:0 deg:45 + x:1 y:0 deg:135
-  <img src="./readMeIMG/confetti_congratulation.gif" width="100%" height="100%">
+  <img src="./readMeIMG/confetti_congratulation.gif" width="100%" >
 
 
 <br>
