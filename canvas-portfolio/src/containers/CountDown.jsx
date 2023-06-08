@@ -23,6 +23,7 @@ const CountDown = (props) => {
     let particles = [];
 
     function resize(){
+      document.querySelector(".count-down").style = "display : flex";
       canCount = true;
       canvasWidth = cavasParnet.clientWidth;
       canvasHeight = cavasParnet.clientHeight;
@@ -60,18 +61,16 @@ const CountDown = (props) => {
           props.changeDown(false);
           const count = document.querySelector(".count-down")
           const port = document.querySelector(".app")
+          count.style = "display: none" 
           gsap.fromTo(port,{opacity: 0}, {
             opacity: 1, 
             duration: 2, 
             onComplete: () =>{
-              count.style = "display: none" 
+              
               window.removeEventListener('click', mouseClick);
             }
           })
-          gsap.to(count,{
-            opacity: 0, 
-            duration: 1,
-          })
+       
          
          
         }
@@ -159,11 +158,13 @@ const CountDown = (props) => {
     document.querySelector('#ring').src = imgScr; 
     window.addEventListener('click', mouseClick);
 
+    // window.addEventListener('onload', resize);
+
     resize();
 
     return () => {
       window.removeEventListener('click', mouseClick);
-      document.querySelector(".count-down").style = "display : inline";
+      document.querySelector(".count-down").style = "display: flex";
       props.changeDown(true);
     }
 

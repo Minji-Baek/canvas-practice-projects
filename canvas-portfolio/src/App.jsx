@@ -17,7 +17,7 @@ function App() {
     if(style)
       appRef.style = "display: none" ;
     else{
-      appRef.style = "display: inline";
+      appRef.style = "display: absolute";
     }  
   },[style])
 
