@@ -2,9 +2,15 @@ import { useEffect, useRef } from 'react';
 import '../style/containers/Nudake.css';
 import throttle from 'lodash/throttle';
 import gsap from 'gsap';
-import image1 from '../assets/nudake-1.jpg';
-import image2 from '../assets/nudake-2.jpg';
-import image3 from '../assets/nudake-3.jpg';
+import image1 from '../assets/sori1.jpg';
+import image3 from '../assets/sori3.jpg';
+import image4 from '../assets/sori4.jpg';
+
+import image5 from '../assets/nurung1.jpg';
+import image6 from '../assets/nurung2.jpg';
+
+
+
 import { drawImageCenter, getAngle, getDistance, getScrupedPercent } from '../utils/utils';
 
 
@@ -20,7 +26,7 @@ const Nudake = () => {
     const cavasParnet = canvas.parentNode;
     const ctx = canvas.getContext('2d');
 
-    const imageSrcs = [image1, image2, image3];
+    const imageSrcs = [image1,image5, image3,  image6,image4 ];
 
     const loadedImgs = [];
 
@@ -46,6 +52,7 @@ const Nudake = () => {
         let loaded = 0;
         imageSrcs.forEach(src =>{
           const img = new Image();
+          
           img.src = src;
           img.onload = ()=>{
             loaded += 1;
@@ -64,7 +71,6 @@ const Nudake = () => {
         canvas.style.opacity = 1;
         ctx.globalCompositeOperation = 'source-over';
         drawImageCenter(canvas, ctx, image);
-  
         const nextImg = imageSrcs[(currentIndex + 1) % imageSrcs.length];
         cavasParnet.style.backgroundImage = `url(${nextImg})`;
         prevPos = null;
@@ -121,6 +127,7 @@ const Nudake = () => {
         drawImage();
       }
     },500)
+
 
     canvas.addEventListener('mousedown', onMouseDown);
     window.addEventListener('resize', resize)

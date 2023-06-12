@@ -50,6 +50,10 @@ html, body {
   font-size: 2rem;
   padding-bottom: 0.5rem;
 }
+.section-1 > header > ul > li {
+  cursor: pointer;
+}
+
 .section-1 > main {
   flex-grow: 1;
   padding: 1rem 0;

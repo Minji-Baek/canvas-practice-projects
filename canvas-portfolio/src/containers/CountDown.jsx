@@ -21,6 +21,7 @@ const CountDown = (props) => {
     const imgScr = circleImg;
     const PARTICLE_NUM = 1000;
     let particles = [];
+    let frameId;
 
     function resize(){
       document.querySelector(".count-down").style = "display : flex";
@@ -52,49 +53,44 @@ const CountDown = (props) => {
 
       let now, delta;
       let then = Date.now();
-      let frameId;
       
       const frame = ()=> {
         frameId = requestAnimationFrame(frame);
+        console.log("countDownRendering")
         if(particles.length == 0){
-          cancelAnimationFrame(frameId);
           props.changeDown(false);
-          const count = document.querySelector(".count-down")
-          const port = document.querySelector(".app")
-          count.style = "display: none" 
-          gsap.fromTo(port,{opacity: 0}, {
-            opacity: 1, 
-            duration: 2, 
-            onComplete: () =>{
-              
-              window.removeEventListener('click', mouseClick);
-            }
+          const count = document.querySelector(".count-down");
+          gsap.fromTo(count,{opacity: 1}, {
+            opacity: 0, 
+            duration: 2,
+            delay: 0.5
+            // onComplete: () => props.changeDown(false)
           })
-       
-         
-         
-        }
-        now = Date.now();
-        delta = now - then;
-      
-        if(delta < interval) return 
-        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-  
-  
-       for(let i = particles.length - 1; i >= 0; i-- ){
-          drawCircles(particles[i]);
-  
-          if(particles[i].opacity < 0) {
-            particles.splice(i, 1);
-          }
-       }
+        }else{
+          now = Date.now();
+          delta = now - then;
         
-        then = now - (delta % interval);
+          if(delta < interval) return 
+          ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    
+    
+         for(let i = particles.length - 1; i >= 0; i-- ){
+            drawCircles(particles[i]);
+    
+            if(particles[i].opacity < 0) {
+              particles.splice(i, 1);
+            }
+         }
+          
+          then = now - (delta % interval);
+        }
+       
   
       }
      
       requestAnimationFrame(frame);
     }
+
 
     const drawCircles = (p)=> {
       p.rAlpha *= p.rFriction;
@@ -163,9 +159,12 @@ const CountDown = (props) => {
     resize();
 
     return () => {
+      console.log("CountDown unmounted")
       window.removeEventListener('click', mouseClick);
-      document.querySelector(".count-down").style = "display: flex";
-      props.changeDown(true);
+      // document.querySelector(".count-down").style = "display: flex";
+      // props.changeDown(true);
+      cancelAnimationFrame(frameId);
+
     }
 
   },[])

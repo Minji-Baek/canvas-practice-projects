@@ -46,6 +46,9 @@ export function drawImageCenter(canvas, ctx, image) {
   }
   sx = iw / 2 - sw / 2
   sy = ih / 2 - sh / 2
-
   ctx.drawImage(image, sx, sy, sw, sh, 0, 0, cw, ch)
+}
+
+export  const randomNumBetween = (min, max) => {
+  return Math.random()*( max - min) + min ;
 }
