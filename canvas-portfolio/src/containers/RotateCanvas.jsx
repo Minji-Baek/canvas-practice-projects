@@ -135,8 +135,9 @@ const RotateCanvas = () => {
     })
 
     return () =>{
-      observer.unobserve(canvas);
+      console.log("rotate unmount")
 
+      observer.unobserve(canvas);
       Composite.clear(engine.world);
       Mouse.clearSourceEvents(mouse);
       Runner.stop(runner);

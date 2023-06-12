@@ -2,9 +2,8 @@ import '../style/containers/CountDown.css';
 import circleImg from '../assets/circle4.png';
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import { randomNumBetween } from '../../../counter-particles-effect-practice/js/utils';
 import PropTypes from 'prop-types';
-import { initCanvas } from '../utils/utils';
+import { initCanvas, randomNumBetween } from '../utils/utils';
 
 const fps = 70;
 const interval = 1000 / fps;
@@ -16,7 +15,7 @@ const canvasRef = useRef(null);
     const {canvas, ctx} = initCanvas(canvasRef.current);
     let canvasWidth = canvas.width
     let canvasHeight =  canvas.height;
-    
+
     const imgScr = circleImg;
     const PARTICLE_NUM = 1000;
     let particles = [];

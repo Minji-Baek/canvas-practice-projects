@@ -6,6 +6,7 @@ import CountDown from './containers/CountDown';
 import MiniGame from './containers/MiniGame';
 import ParticleDemo from './containers/ParticleDemo';
 import gsap from 'gsap';
+import FireWork from './containers/FireWork';
 
 function App() { 
   const [endCount, setEndCount] = useState(true);
@@ -68,7 +69,7 @@ function App() {
     // <React.Fragment> === <>
     <>
     {
-      endCount 
+      false 
       ?  
       <div className='count'>
         <CountDown changeDown={changeCountDown} />
@@ -115,7 +116,7 @@ function App() {
        </section>
      </div>
        <footer>
-
+        <FireWork />
        <div className='email'>emilyback@naver.com</div>
      </footer>
    </>
