@@ -4,36 +4,28 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { randomNumBetween } from '../../../counter-particles-effect-practice/js/utils';
 import PropTypes from 'prop-types';
+import { initCanvas } from '../utils/utils';
 
 const fps = 70;
 const interval = 1000 / fps;
-
 const CountDown = (props) => {
-  const canvasRef = useRef(null);
+const canvasRef = useRef(null);
 
   useEffect(()=>{
     let canCount = true;
-
-    const canvas = canvasRef.current;
-    const cavasParnet = canvas.parentNode;
-    const ctx = canvas.getContext('2d');
-    let canvasWidth, canvasHeight;
+    const {canvas, ctx} = initCanvas(canvasRef.current);
+    let canvasWidth = canvas.width
+    let canvasHeight =  canvas.height;
+    
     const imgScr = circleImg;
     const PARTICLE_NUM = 1000;
     let particles = [];
     let frameId;
 
-    function resize(){
-      document.querySelector(".count-down").style = "display : flex";
-      canCount = true;
-      canvasWidth = cavasParnet.clientWidth;
-      canvasHeight = cavasParnet.clientHeight;
-      canvas.style.width = canvasWidth + 'px';
-      canvas.style.height = canvasHeight + 'px';
-
-      canvas.width = canvasWidth;
-      canvas.height = canvasHeight;
-    }
+    // function resize(){
+    //   document.querySelector(".count-down").style = "display : flex";
+    //   canCount = true;
+    // }
     
     function render(){
 
@@ -156,7 +148,7 @@ const CountDown = (props) => {
 
     // window.addEventListener('onload', resize);
 
-    resize();
+    // resize();
 
     return () => {
       console.log("CountDown unmounted")

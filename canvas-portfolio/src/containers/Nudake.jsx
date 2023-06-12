@@ -11,7 +11,7 @@ import image6 from '../assets/nurung2.jpg';
 
 
 
-import { drawImageCenter, getAngle, getDistance, getScrupedPercent } from '../utils/utils';
+import { drawImageCenter, getAngle, getDistance, getScrupedPercent, initCanvas } from '../utils/utils';
 
 
 const Nudake = () => {
@@ -21,10 +21,9 @@ const Nudake = () => {
     //return 후 실행
 
     //canvas setting
-    const canvas = canvasRef.current;
-    console.log(canvas);
-    const cavasParnet = canvas.parentNode;
-    const ctx = canvas.getContext('2d');
+    const {canvas, ctx} = initCanvas(canvasRef.current);
+    let canvasWidth = canvas.width
+    let canvasHeight =  canvas.height;
 
     const imageSrcs = [image1,image5, image3,  image6,image4 ];
 
@@ -34,16 +33,8 @@ const Nudake = () => {
 
     let prevPos = { x: 0, y: 0}
     let isChanging = false; // 나타나는 animation 중에는 mouse event 불가
-    let canvasWidth, canvasHeight;
 
     function resize(){
-      canvasWidth = cavasParnet.clientWidth;
-      canvasHeight = cavasParnet.clientHeight;
-      canvas.style.width = canvasWidth + 'px';
-      canvas.style.height = canvasHeight + 'px';
-
-      canvas.width = canvasWidth;
-      canvas.height = canvasHeight;
       preloadImages().then(()=> drawImage());
     }
 
@@ -72,7 +63,7 @@ const Nudake = () => {
         ctx.globalCompositeOperation = 'source-over';
         drawImageCenter(canvas, ctx, image);
         const nextImg = imageSrcs[(currentIndex + 1) % imageSrcs.length];
-        cavasParnet.style.backgroundImage = `url(${nextImg})`;
+        canvas.parentNode.style.backgroundImage = `url(${nextImg})`;
         prevPos = null;
         isChanging = false;
       }})

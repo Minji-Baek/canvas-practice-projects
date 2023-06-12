@@ -49,6 +49,21 @@ export function drawImageCenter(canvas, ctx, image) {
   ctx.drawImage(image, sx, sy, sw, sh, 0, 0, cw, ch)
 }
 
+export function initCanvas(canvasRef) {
+  const canvas = canvasRef;
+  const cavasParnet = canvas.parentNode;
+  const ctx = canvas.getContext('2d');
+  let canvasWidth = cavasParnet.clientWidth;
+  let canvasHeight = cavasParnet.clientHeight;
+  canvas.style.width = canvasWidth + 'px';
+  canvas.style.height = canvasHeight + 'px';
+
+  canvas.width = canvasWidth;
+  canvas.height = canvasHeight;
+
+  return {canvas, ctx};
+}
+
 export  const randomNumBetween = (min, max) => {
   return Math.random()*( max - min) + min ;
 }

@@ -39,7 +39,7 @@ function App() {
   
 
   useEffect(()=>{
-    console.log("이게 돌면 안되는디")
+    console.log("canvas 값이 바뀌고 있어용")
     if(canvas === "photo"){
       setIsPhoto(current=> current = true);
       setIsDemo(current => current = false);
@@ -53,9 +53,7 @@ function App() {
   }, [canvas]) //canvas값 바뀌는 곳
   
   useEffect(()=>{
-    if(isDemo === false){
-      console.log("App.isDemo is False usEffect", isDemo)
-    }
+   
   }, [isDemo]) 
 
   useEffect(()=>{
@@ -90,7 +88,7 @@ function App() {
        {/*  isEndDemo={isEndDemo}  */}
          <main>
            <div>
-           { isPhoto ? <Nudake />  :  (  isDemo  ?   <ParticleDemo particleEnd={isDemo}/> : <MiniGame/> ) }</div>
+           { isPhoto ? <Nudake />  :  (  isDemo  ?   <ParticleDemo /> : <MiniGame/> ) }</div>
          </main>
        </section>
        
@@ -117,6 +115,7 @@ function App() {
        </section>
      </div>
        <footer>
+
        <div className='email'>emilyback@naver.com</div>
      </footer>
    </>

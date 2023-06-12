@@ -1,4 +1,4 @@
-import { randomNumBetween } from '../utils/utils.js';
+import { initCanvas, randomNumBetween } from '../utils/utils.js';
 import '../style/containers/ParticleDemo.css'
 import { useEffect, useRef, useState } from 'react';
 
@@ -6,37 +6,26 @@ const fps = 70;
 const interval = 1000 / fps;
 
 
-const ParticleDemo =(props)=>{
+const ParticleDemo =()=>{
   const canvasRef = useRef(null);
-  const [isRend, setIsRender] = useState(props.particleEnd);
-  useEffect(()=>{
-    
-    setIsRender()
-  },[isRend])
 
   useEffect(()=>{
-    const canvas = canvasRef.current;
-    const cavasParnet = canvas.parentNode;
-    const ctx = canvas.getContext('2d');
-    let canvasWidth, canvasHeight;
+    const {canvas, ctx} = initCanvas(canvasRef.current);
+    let canvasWidth = canvas.width
+    let canvasHeight =  canvas.height;
+    const total = canvasWidth / 20;
 
     let particles = [];
     let frameId;
     let gui;
-    function resize(){
-      canvasWidth = cavasParnet.clientWidth;
-      canvasHeight = cavasParnet.clientHeight;
-      canvas.style.width = canvasWidth + 'px';
-      canvas.style.height = canvasHeight + 'px';
-      canvas.width = canvasWidth;
-      canvas.height = canvasHeight;
-      const total = canvasWidth / 20;
-      initParticle(total);
-      initGui();
+   
 
+    function resize(){
+      initParticle();
+      initGui();
     }
 
-    const initParticle =(total) =>{
+    const initParticle = () =>{
       for(let i = 0; i < total ; i++){
         particles.push(
           {   
@@ -49,12 +38,10 @@ const ParticleDemo =(props)=>{
         )
       }
 
-      console.log("initParticle end", particles);
     } 
     const initGui = () => {
       const feGaussianBlur = document.querySelector('feGaussianBlur');
       const feColorMatrix = document.querySelector('feColorMatrix');
-
 
       const controls = new function () {
         this.blurValue = 40; //blur
@@ -87,7 +74,6 @@ const ParticleDemo =(props)=>{
     }
 
 
-
     const drawRain = (particle) => {
       particle.yVer *= particle.acc
       particle.y += particle.yVer 
@@ -107,34 +93,27 @@ const ParticleDemo =(props)=>{
       
       const frame = ()=> {
         frameId = requestAnimationFrame(frame);
-        console.log("rendering>?", isRend);
 
-        if(isRend === false){
-          console.log("false???????>?", isRend);
-
-          cancelAnimationFrame(frameId);
-
-        }else{
-          now = Date.now()
-          delta = now - then
-          if (delta < interval) return
+        now = Date.now()
+        delta = now - then
+        if (delta < interval) return
+      
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight) // 동그라미 지우기
         
-          ctx.clearRect(0, 0, canvasWidth, canvasHeight) // 동그라미 지우기
-          
-          particles.forEach(particle => {
-            drawRain(particle);
-        
-            //맨 밑으로 공이 넘어가면
-            if (particle.y - particle.radius > canvasHeight) {
-              particle.y = -particle.radius;
-              particle.x = randomNumBetween(0, canvasWidth);
-              particle.radius = randomNumBetween(30, 70);
-              particle.yVer = randomNumBetween(1, 5);
-            }
-          })  
-        
-          then = now - (delta % interval);
-        }
+        particles.forEach(particle => {
+          drawRain(particle);
+      
+          //맨 밑으로 공이 넘어가면
+          if (particle.y - particle.radius > canvasHeight) {
+            particle.y = -particle.radius;
+            particle.x = randomNumBetween(0, canvasWidth);
+            particle.radius = randomNumBetween(30, 70);
+            particle.yVer = randomNumBetween(1, 5);
+          }
+        })  
+      
+        then = now - (delta % interval);
+      
         //fps 주사율 방식
        
       }
