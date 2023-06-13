@@ -52,7 +52,7 @@ export function drawImageCenter(canvas, ctx, image) {
 export function initCanvas(canvasRef) {
   const canvas = canvasRef;
   const cavasParnet = canvas.parentNode;
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext('2d', { willReadFrequently: true });
   let canvasWidth = cavasParnet.clientWidth;
   let canvasHeight = cavasParnet.clientHeight;
   canvas.style.width = canvasWidth + 'px';

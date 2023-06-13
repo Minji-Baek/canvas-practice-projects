@@ -14,5 +14,5 @@
 }
 
 .nudake > canvas {
-  position: absolute;
+  position: relative;
 }

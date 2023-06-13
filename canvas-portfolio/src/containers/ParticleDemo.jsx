@@ -11,8 +11,13 @@ const ParticleDemo =()=>{
 
   useEffect(()=>{
     const {canvas, ctx} = initCanvas(canvasRef.current);
+   
+    canvas.width *= 0.97;
+    canvas.height *= 0.9;
     let canvasWidth = canvas.width
     let canvasHeight =  canvas.height;
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasHeight + 'px';
     const total = canvasWidth / 20;
 
     let particles = [];
@@ -27,11 +32,12 @@ const ParticleDemo =()=>{
 
     const initParticle = () =>{
       for(let i = 0; i < total ; i++){
+        const radius = randomNumBetween(30, 70)
         particles.push(
           {   
-             x : randomNumBetween(0, canvasWidth),
+             x : randomNumBetween(0 , canvasWidth),
              y : randomNumBetween(0, canvasHeight),
-             radius : randomNumBetween(30, 70),
+             radius : radius,
              yVer : randomNumBetween(1, 5),
              acc : 1.03
           }

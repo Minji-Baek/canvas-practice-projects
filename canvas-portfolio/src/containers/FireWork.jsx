@@ -102,14 +102,14 @@ const FireWork = () => {
       let then = Date.now();
   
       const frame = ()=> {
-        console.log("render 중")
+        // console.log("render 중")
         frameId = requestAnimationFrame(frame);
       
         now = Date.now();
         delta = now - then;
       
         if(delta < interval) return 
-        ctx.fillStyle = '#000000' + '40' ;
+        ctx.fillStyle = '#1B1B19' + '40' ;
         ctx.fillRect(0,0, canvasWidth, canvasHeight);
   
         ctx.fillStyle = `rgba(255, 255, 255, ${particles.length / 50000})`

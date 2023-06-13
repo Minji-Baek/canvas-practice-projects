@@ -125,11 +125,12 @@ const Nudake = () => {
     resize();
 
     return () => { //unmount 될때 cleanUp 항목들
+      console.log("nudake unmounted")
       window.removeEventListener('resize', resize);
       canvas.removeEventListener('mousedown', onMouseDown);
     }
 
-  }, [])
+  }, [canvasRef])
 
   return (
     <div className='nudake'>
