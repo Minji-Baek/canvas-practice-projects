@@ -143,6 +143,8 @@ footer >  #cursor {
   left: 0;
   z-index: 9999;
   color: #2cfd4e;
+  font-size: 14px;
+  text-shadow: 1px 1px 2px hotpink ;
   animation: text-pump-moving 1s infinite;
   pointer-events: none !important;
 }
@@ -153,21 +155,17 @@ footer >  #cursor {
     transform: scale(1.2);
   }
   25%{
-    opacity: 0.6;
-    transform: scale(0.8);
+    transform: scale(1);
   }
 
   50%{
-    opacity:1;
-    transform: scale(1.7);
+    transform: scale(1.3);
   }
   75%{
-    opacity: 0.8;
     transform: scale(0.9);
   }
-
   100%{
-    opacity: 1;
-    transform: scale(2);
+    opacity: 0.8;
+    transform: scale(1.5);
   }
 }
