@@ -120,11 +120,54 @@ footer {
   background-color: var(--color-text);
   color: #fff;
   position: relative;
+  z-index: 1;
   margin-top: 6rem;
 }
+
 footer > .email {
   position: absolute;
   font-size: 12vmin;
   bottom: 2rem;
   right: 2rem;
+  cursor: none;
+}
+
+footer >  #cursor {
+  display: none;
+  position: none;
+}
+
+#email-click-cursor{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  color: #2cfd4e;
+  animation: text-pump-moving 1s infinite;
+  pointer-events: none !important;
+}
+
+@keyframes text-pump-moving {
+  0% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  25%{
+    opacity: 0.6;
+    transform: scale(0.8);
+  }
+
+  50%{
+    opacity:1;
+    transform: scale(1.7);
+  }
+  75%{
+    opacity: 0.8;
+    transform: scale(0.9);
+  }
+
+  100%{
+    opacity: 1;
+    transform: scale(2);
+  }
 }

@@ -7,6 +7,8 @@ import MiniGame from './containers/MiniGame';
 import ParticleDemo from './containers/ParticleDemo';
 import gsap from 'gsap';
 import FireWork from './containers/FireWork';
+import Confetti from './containers/Confetti';
+import { words } from 'lodash';
 
 function App() { 
   const [endCount, setEndCount] = useState(true);
@@ -17,13 +19,14 @@ function App() {
 
   const [isDemo, setIsDemo] = useState(false);
 
-  // const particleEnd = (data) => {
-  //   set
-  // }
+  const [isConfetti, setIsConfetti] = useState(false);
 
   const changeCountDown = (data) =>{
     //app 을 disappear
     setEndCount(data)
+  };
+  const changeFooter = () =>{
+    setIsConfetti(current => !current)
   };
 
   useEffect(() => {
@@ -35,9 +38,9 @@ function App() {
       duration: 2,
     })
    
-          
   },[endCount]) //app disappear
-  
+
+
 
   useEffect(()=>{
     console.log("canvas 값이 바뀌고 있어용")
@@ -54,16 +57,50 @@ function App() {
   }, [canvas]) //canvas값 바뀌는 곳
   
   useEffect(()=>{
+
    
-  }, [isDemo]) 
+  }, [isDemo, isPhoto ]);
 
   useEffect(()=>{
+    let mouseInEmail = false;
+    const email =  document.querySelector(".email");
+    const cursorText = document.querySelector('#cursor');
 
-  },[isPhoto])
+    email.addEventListener('mouseover', (e)=> {
+      mouseInEmail = true;
+      cursorText.removeAttribute("cursor");
+      cursorText.setAttribute("id", "email-click-cursor");
+
+    })
+
+    window.addEventListener('mousemove',(e) =>{
+      if(!mouseInEmail) return;
+      cursorText.style.top =  e.clientY + "px";
+      cursorText.style.left =  e.clientX + "px";   
+
+    })
+   
+  
+    email.addEventListener("mouseout", (e) => {
+      mouseInEmail = false;
+      cursorText.setAttribute("id", "cursor");
+      cursorText.removeAttribute("email-click-cursor");
+
+    });
+  
+   
+  }, [ ]);
+
+
+
+ 
+  
   
   const changeMain = (e) => {
      setcanvas(current => current = e.target.id)
   }
+
+
 
   return (
     // <React.Fragment> === <>
@@ -86,7 +123,6 @@ function App() {
              <li id='minigame' className='list-items' onClick={changeMain} >minigame</li>
            </ul>
          </header>
-       {/*  isEndDemo={isEndDemo}  */}
          <main>
            <div>
            { isPhoto ? <Nudake />  :  (  isDemo  ?   <ParticleDemo /> : <MiniGame/> ) }</div>
@@ -94,7 +130,7 @@ function App() {
        </section>
        
        <section className="section-2">
-        { canvas ? <p>Did you click photo?</p> : <p>Have a fun!</p>}
+        { isPhoto ? <p>Did you click photo? </p> : <p>Have a fun!</p>}
 
        </section>
        <section className="section-3">
@@ -115,9 +151,11 @@ function App() {
          <RotateCanvas />
        </section>
      </div>
+     
        <footer>
-        <FireWork />
-       <div className='email'>emilyback@naver.com</div>
+          {isConfetti ? <Confetti /> : <FireWork />}
+        <div id='cursor'>click me!</div>
+       <div className='email' onClick={changeFooter} >emilyback@naver.com</div>
      </footer>
    </>
     }
