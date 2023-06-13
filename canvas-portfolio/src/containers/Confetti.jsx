@@ -17,7 +17,7 @@ const Confetti = () => {
     const friction =  0.87; //마찰력 곱
 
     const gravity = 0.5; //중력 더하기
-    let frameId;
+    let frameId, observer;
     // const friction = randomNumBetween(0.95, 0.97); //마찰력 곱
 
     const createParticles = (x, y, deg, colors, shapes, spread) => {
@@ -162,9 +162,26 @@ const Confetti = () => {
       }
       requestAnimationFrame(frame);
     }
+
+    const initIntersectionObserver = () =>{
+      const options = {
+        threshold: 0.1
+      }
+      observer = new IntersectionObserver(entries => {
+        const canvasEntry = entries[0];
+        if(canvasEntry.isIntersecting){
+          render();
+        } else{
+          cancelAnimationFrame(frameId)
+        }
+      }, options)
+      observer.observe(canvas);
+    }
+    initIntersectionObserver();
     render();
 
     return () => {
+      observer.unobserve(canvas);
       cancelAnimationFrame(frameId);
     }
   },[])

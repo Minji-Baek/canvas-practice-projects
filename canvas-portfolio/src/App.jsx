@@ -53,6 +53,7 @@ function App() {
     }else{
       setIsPhoto(current=> current = false);
       setIsDemo(current => current = false);
+      
     }
   }, [canvas]) //canvas값 바뀌는 곳
   
@@ -91,16 +92,9 @@ function App() {
    
   }, [ ]);
 
-
-
- 
-  
-  
   const changeMain = (e) => {
      setcanvas(current => current = e.target.id)
   }
-
-
 
   return (
     // <React.Fragment> === <>
@@ -133,30 +127,39 @@ function App() {
         { isPhoto ? <p>Did you click photo? </p> : <p>Have a fun!</p>}
 
        </section>
-       <section className="section-3">
-         <aside>
-           <div className="top">
-             1914 translation by H. Rackham
-           </div>
-           <div className="bottom">
-             <img src={ArrowImg} />
-             <img src={ArrowImg} />
-           </div>
-         </aside>
-         <article>
-         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-         </article>
-       </section>
-       <section className='section-4'>
-         <RotateCanvas />
-       </section>
+       { isPhoto || isDemo 
+       ?  
+       <>
+        <section className="section-3">
+          <aside>
+            <div className="top">
+              1914 translation by H. Rackham
+            </div>
+            <div className="bottom">
+              <img src={ArrowImg} />
+              <img src={ArrowImg} />
+            </div>
+          </aside>
+          <article>
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+          </article>
+        </section>
+        <section className='section-4'>
+          <RotateCanvas />
+        </section>
+       </> : null
+       }
      </div>
-     
+     { isPhoto || isDemo 
+       ?  
+       <>
        <footer>
           {isConfetti ? <Confetti /> : <FireWork />}
         <div id='cursor'>click me!</div>
        <div className='email' onClick={changeFooter} >emilyback@naver.com</div>
      </footer>
+     </> : null
+     }
    </>
     }
     
