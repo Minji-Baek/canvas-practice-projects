@@ -14,7 +14,7 @@ export function getAngle(p1, p2) {
 
 export function getScrupedPercent(ctx, width, height) {
   const pixels = ctx.getImageData(0, 0, width, height)
-  const gap = 32 //값을 올려 performance detail 올릴 수 있음
+  const gap = 50 //값을 올려 performance detail 올릴 수 있음
   const total = pixels.data.length / gap
   let count = 0
 
