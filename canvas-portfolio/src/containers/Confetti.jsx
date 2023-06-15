@@ -60,7 +60,7 @@ const Confetti = () => {
     }
 
      const createConfetti =  ({x, y, count, deg, colors,shapes, spread}) =>{
-      console.log("createConfetti");
+      // console.log("createConfetti");
       for(let i = 0; i < count ; i++){
         const particle =  createParticles(x, y, deg, colors, shapes, spread )
         particles.push(particle);
@@ -132,7 +132,6 @@ const Confetti = () => {
           deg: -120,  
         });
         
-        console.log(particles)
         for(let i = particles.length - 1; i >= 0; i--){
           particles[i].vy += gravity;
 
@@ -181,6 +180,7 @@ const Confetti = () => {
     render();
 
     return () => {
+      console.log("confetti unmount 안됨?");
       observer.unobserve(canvas);
       cancelAnimationFrame(frameId);
     }

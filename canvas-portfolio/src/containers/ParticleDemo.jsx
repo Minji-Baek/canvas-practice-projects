@@ -71,7 +71,7 @@ const ParticleDemo =()=>{
       });
 
       const f2 = gui.addFolder('Particle Property');
-      f2.open();
+      f2.close();
       f2.add(controls, 'acc', 1, 1.5, 0.01).onChange(v => {
         particles.forEach(particle => particle.acc = v);
       });
@@ -139,6 +139,7 @@ const ParticleDemo =()=>{
 
   return (
     <div className="particle-demo" >
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js" integrity="sha512-WoO4Ih0CDOSLYafy22wZD/mcJ7k0ESLqtQsFa6zFKnEUrbtuGU+GkLtVhgt93xa2qewG5gKEC6CWlN8OaCTSVg==" crossOrigin="anonymous" referrerPolicy="no-referrer"></script>
      <canvas ref={canvasRef}></canvas>
       <svg>
         <defs>

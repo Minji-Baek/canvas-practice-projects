@@ -21,11 +21,6 @@ const canvasRef = useRef(null);
     let particles = [];
     let frameId;
 
-    // function resize(){
-    //   document.querySelector(".count-down").style = "display : flex";
-    //   canCount = true;
-    // }
-    
     function render(){
 
       for(let i = 0; i < PARTICLE_NUM ; i++){
@@ -49,14 +44,15 @@ const canvasRef = useRef(null);
         frameId = requestAnimationFrame(frame);
         console.log("countDownRendering")
         if(particles.length == 0){
-          props.changeDown(false);
           const count = document.querySelector(".count-down");
           gsap.fromTo(count,{opacity: 1}, {
             opacity: 0, 
             duration: 2,
-            delay: 0.5
+            // delay: 1
             // onComplete: () => props.changeDown(false)
           })
+          props.changeDown(false);
+
         }else{
           now = Date.now();
           delta = now - then;
@@ -75,14 +71,9 @@ const canvasRef = useRef(null);
           
           then = now - (delta % interval);
         }
-       
-  
       }
-     
       requestAnimationFrame(frame);
     }
-
-
     const drawCircles = (p)=> {
       p.rAlpha *= p.rFriction;
       p.r += p.rAlpha;
@@ -144,16 +135,10 @@ const canvasRef = useRef(null);
 
     document.querySelector('#ring').src = imgScr; 
     window.addEventListener('click', mouseClick);
-
-    // window.addEventListener('onload', resize);
-
-    // resize();
-
     return () => {
       console.log("CountDown unmounted")
       window.removeEventListener('click', mouseClick);
       // document.querySelector(".count-down").style = "display: flex";
-      // props.changeDown(true);
       cancelAnimationFrame(frameId);
 
     }

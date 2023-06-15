@@ -36,7 +36,37 @@ function App() {
     gsap.fromTo(port,{opacity: 0}, {
       opacity: 1, 
       duration: 2,
+      delay: 0.3
     })
+
+    console.log("mouse click 떠야되는데")
+    let mouseInEmail = false;
+    const email =  document.querySelector(".email");
+    const cursorText = document.querySelector('#cursor');
+
+    email.addEventListener('mouseover', (e)=> {
+      mouseInEmail = true;
+      cursorText.removeAttribute("cursor");
+      cursorText.setAttribute("id", "email-click-cursor");
+
+    })
+    const footer = document.querySelector("footer");
+
+    footer.addEventListener('mousemove',(e) =>{
+      if(!mouseInEmail) return;
+      cursorText.style.top =  e.clientY + "px";
+      cursorText.style.left =  e.clientX + "px";   
+
+    })
+   
+  
+    email.addEventListener("mouseout", (e) => {
+      mouseInEmail = false;
+      cursorText.setAttribute("id", "cursor");
+      cursorText.removeAttribute("email-click-cursor");
+
+    });
+  
    
   },[endCount]) //app disappear
 
@@ -63,32 +93,7 @@ function App() {
   }, [isDemo, isPhoto ]);
 
   useEffect(()=>{
-    let mouseInEmail = false;
-    const email =  document.querySelector(".email");
-    const cursorText = document.querySelector('#cursor');
-
-    email.addEventListener('mouseover', (e)=> {
-      mouseInEmail = true;
-      cursorText.removeAttribute("cursor");
-      cursorText.setAttribute("id", "email-click-cursor");
-
-    })
-
-    window.addEventListener('mousemove',(e) =>{
-      if(!mouseInEmail) return;
-      cursorText.style.top =  e.clientY + "px";
-      cursorText.style.left =  e.clientX + "px";   
-
-    })
-   
-  
-    email.addEventListener("mouseout", (e) => {
-      mouseInEmail = false;
-      cursorText.setAttribute("id", "cursor");
-      cursorText.removeAttribute("email-click-cursor");
-
-    });
-  
+    
    
   }, [ ]);
 
@@ -100,7 +105,7 @@ function App() {
     // <React.Fragment> === <>
     <>
     {
-      false 
+      endCount 
       ?  
       <div className='count'>
         <CountDown changeDown={changeCountDown} />
