@@ -22,7 +22,7 @@ canvas {
   /* position: relative; */
   overflow: hidden;
 }
-/* 
+
 .ready-screen, .finish-screen {
   position: absolute;
   left: 0;
@@ -71,4 +71,4 @@ canvas {
   font-size: 8vmin;
   margin-bottom: 8vmin;
   color: gold;
-} */
+}
