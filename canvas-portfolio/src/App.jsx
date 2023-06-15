@@ -114,7 +114,7 @@ function App() {
            <ul>
              <li id='photo' className='list-items' onClick={changeMain} >photo</li>
              <li id='particle-demo' className='list-items' onClick={changeMain} >particle-demo</li>
-             <li id='minigame' className='list-items' onClick={changeMain} >minigame</li>
+             {/* <li id='minigame' className='list-items' onClick={changeMain} >minigame</li> */}
            </ul>
          </header>
          <main>
