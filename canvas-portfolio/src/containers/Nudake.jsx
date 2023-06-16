@@ -21,7 +21,7 @@ const Nudake = () => {
     //canvas setting
     const canvas = canvasRef.current;
     const canvasParent = canvas.parentNode;
-    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    const ctx = canvas.getContext('2d');
 
     let canvasWidth;
     let canvasHeight;
