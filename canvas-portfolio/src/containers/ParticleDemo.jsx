@@ -2,6 +2,7 @@ import { initCanvas, randomNumBetween } from '../utils/utils.js';
 import '../style/containers/ParticleDemo.css'
 import { useEffect, useRef, useState } from 'react';
 
+
 const fps = 70;
 const interval = 1000 / fps;
 
@@ -139,7 +140,6 @@ const ParticleDemo =()=>{
 
   return (
     <div className="particle-demo" >
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js" integrity="sha512-WoO4Ih0CDOSLYafy22wZD/mcJ7k0ESLqtQsFa6zFKnEUrbtuGU+GkLtVhgt93xa2qewG5gKEC6CWlN8OaCTSVg==" crossOrigin="anonymous" referrerPolicy="no-referrer"></script>
      <canvas ref={canvasRef}></canvas>
       <svg>
         <defs>

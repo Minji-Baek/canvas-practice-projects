@@ -91,27 +91,51 @@ html, body {
   justify-content: space-between;
 }
 .section-3 > aside > .top {
-  font-size: 5rem;
   padding: 2rem 0 2rem 1rem;
   letter-spacing: -0.2rem;
+  line-height: 1.3;
 }
+.section-3 > aside > .top > .title, .date, .lang, .enviro {
+  letter-spacing: -0.1rem;
+  line-height: 1.3;
+}
+
+.section-3 > aside > .top > .title {
+  font-size: 5rem;
+}
+
+.section-3 > aside > .top > .date {
+  font-size: 3rem;
+ 
+}
+.section-3 > aside > .top > .lang {
+  font-size: 3rem;
+ 
+}
+.section-3 > aside > .top > .enviro {
+  font-size: 3rem;
+ 
+}
+
 .section-3 > aside > .bottom {
   height: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 2rem;
+  cursor: pointer;
 }
 .section-3 > aside > .bottom > img:nth-last-child(1) {
   transform: scaleX(-1);
 }
 .section-3 > article { 
   width: 60%;
-  font-size: 2rem;
+  font-size: 1.6rem;
   display: flex;
   align-items: center;
   padding: 0 3rem;
-  line-height: 1.3;
+  line-height: 1.4;
+  letter-spacing: 0.1rem;
 }
 
 

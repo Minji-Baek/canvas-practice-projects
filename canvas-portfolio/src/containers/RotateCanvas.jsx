@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import '../style/containers/RotateCanvas.css'
 import {Engine, Render, Runner, Mouse, MouseConstraint, Composite, Bodies, Events} from 'matter-js'
-import IconAFRAME from '../assets/icon_AFRAME.png';
+import IconVUE from '../assets/icon_VUE.png';
 import IconHTML from '../assets/icon_HTML.png';
 import IconCSS from '../assets/icon_CSS.png';
 import IconJS from '../assets/icon_JS.png';
@@ -10,12 +10,12 @@ import IconTHREE from '../assets/icon_THREE.png';
 import { entries } from 'lodash';
 
 const data = {
-  'JS': { title: 'Javascript', level: 4, desc: '자바스크립트에 대한 설명이라고 할 수 있습니다. 자바스크립트에 대한 설명. 자바스크립트에 대한 설명.' },
-  'REACT': { title: 'React.js', level: 5, desc: 'React에 대한 설명이라고 할 수 있습니다. React에 대한 설명. React에 대한 설명.' },
-  'CSS': { title: 'CSS/SASS', level: 3, desc: 'CSS에 대한 설명이라고 할 수 있습니다. CSS에 대한 설명. CSS에 대한 설명.' },
-  'AFRAME': { title: 'Aframe.js', level: 4, desc: 'AFRAME에 대한 설명이라고 할 수 있습니다. AFRAME에 대한 설명. AFRAME에 대한 설명.' },
-  'THREE': { title: 'Three.js', level: 2, desc: 'THREE에 대한 설명이라고 할 수 있습니다. THREE에 대한 설명. THREE에 대한 설명.' },
-  'HTML': { title: 'HTML', level: 5, desc: 'HTML에 대한 설명이라고 할 수 있습니다. HTML에 대한 설명. HTML에 대한 설명.' },
+  'JS': { title: 'Javascript', level: 4, desc: '3년간의 경험과 react 프로젝트를 통해 어떤 framework 보다 javascript 기본이 제일 중요한 것을 느꼈습니다.' },
+  'REACT': { title: 'React.js', level: 2, desc: '현재 이 프로젝트는 canvas를 활용하여 react를 사용하여 만들었습니다. 다수의 toy 프로젝트 경험도 있습니다.' },
+  'CSS': { title: 'CSS/SASS', level: 3, desc: 'css를 잘 활용하면 간단한 animation 등으로 랜더링 성능에 도움을 줄 수 있습니다.' },
+  'VUE': { title: 'VUE.js', level: 5, desc: 'vue로 frontend를 시작하였고 많은 경험으로 능숙하게 사용할 수 있습니다.' },
+  'THREE': { title: 'Three.js', level: 2, desc: '' },
+  'HTML': { title: 'HTML', level: 4, desc: '잘 짜여진 html 구조는 컴포넌트화에 매우 중요한 역할을 합니다.' },
 }
 
 const RotateCanvas = () => {
@@ -61,7 +61,7 @@ const RotateCanvas = () => {
     const initImageBoxes = () =>{
       const scale = 0.7;
       const t1 = { w: 250 * scale, h: 250 * scale }
-      const t2 = { w: 732 * scale, h: 144 * scale }
+      const t2 = { w: 403 * scale, h: 134 * scale }
       addRect(cw/2, ch/2, t1.w, t1.h,
         { label:'JS', chamfer: {radius: 20}, render: {sprite: {texture: IconJS, xScale: scale, yScale: scale}}});
 
@@ -78,7 +78,7 @@ const RotateCanvas = () => {
         { label:'THREE', chamfer: {radius: 20}, render: {sprite: {texture: IconTHREE, xScale: scale, yScale: scale}}});
 
       addRect(cw/2, ch/2 - t2.h, t2.w, t2.h, 
-        { label:'AFRAME', chamfer: {radius: 20}, render: {sprite: {texture: IconAFRAME, xScale: scale, yScale: scale}}});
+        { label:'VUE', chamfer: {radius: 0}, render: {sprite: {texture: IconVUE, xScale: scale, yScale: scale}}});
     }
 
     const initGround = () =>{ 
