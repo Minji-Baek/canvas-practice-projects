@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useImperativeHandle, useRef, useState } from 'react';
 import ArrowImg from './assets/arrow.svg';
 import Nudake from './containers/Nudake';
 import RotateCanvas from './containers/RotateCanvas';
@@ -13,7 +13,6 @@ import { words } from 'lodash';
 function App() { 
   const [endCount, setEndCount] = useState(true);
 
-
   const [canvas, setcanvas] = useState("photo");
   const [isPhoto, setIsPhoto] = useState(true);
 
@@ -26,48 +25,78 @@ function App() {
     setEndCount(data)
   };
   const changeFooter = () =>{
-    setIsConfetti(current => !current)
+    if(endCount){
+    }
+    else setIsConfetti(current => !current)
   };
 
   useEffect(() => {
-    if(endCount) return;
-
-    const port = document.querySelector(".app");
-    gsap.fromTo(port,{opacity: 0}, {
-      opacity: 1, 
-      duration: 2,
-      delay: 0.3
-    })
-
-    console.log("mouse click 떠야되는데")
+    
+    console.log("mouse click 떠야되는데", endCount)
     let mouseInEmail = false;
     const email =  document.querySelector(".email");
-    const cursorText = document.querySelector('#cursor');
-
-    email.addEventListener('mouseover', (e)=> {
-      mouseInEmail = true;
-      cursorText.removeAttribute("cursor");
-      cursorText.setAttribute("id", "email-click-cursor");
-
-    })
     const footer = document.querySelector("footer");
+    const cursorText = document.querySelector('.cursor');
+    let first = true;
 
-    footer.addEventListener('mousemove',(e) =>{
+    const cursorToMove = ()=>{
+      mouseInEmail = true;
+
+      cursorText.setAttribute("id", "email-click-cursor");
+      console.log("cursorToMove")
+      cursorText.removeAttribute("#cursor");
+    }
+    const cursorToStop = () =>{
+      mouseInEmail = false;
+      console.log("cursorToMove")
+      cursorText.removeAttribute("#email-click-cursor");
+      cursorText.setAttribute("id", "cursor");
+    }
+
+    const cursorMove = (mouseInEmail, e) =>{
       if(!mouseInEmail) return;
       cursorText.style.top =  e.clientY + "px";
-      cursorText.style.left =  e.clientX + "px";   
+      cursorText.style.left =  e.clientX + "px";
+    }
 
-    })
-   
-  
-    email.addEventListener("mouseout", (e) => {
-      mouseInEmail = false;
-      cursorText.setAttribute("id", "cursor");
-      cursorText.removeAttribute("email-click-cursor");
 
-    });
+    if(endCount){
+      mouseInEmail = true;
+      footer.addEventListener('mouseover',cursorToMove);
+      footer.addEventListener("mouseout", cursorToStop);
+      footer.addEventListener('mousemove',(e) =>  cursorMove(mouseInEmail, e));
+
+    }else{
+      if(first){
+        footer.removeEventListener('mousemove',(e) =>  cursorMove(mouseInEmail, e))
+        footer.removeEventListener('mouseover',cursorToMove);
+        footer.removeEventListener("mouseout", cursorToStop);
+        footer.style.cursor = "default"
+        first = false;
+      }
+
+      cursorToStop();
+      
+      email.addEventListener('mouseover', cursorToMove);
+      footer.addEventListener('mousemove',(e) =>  cursorMove(mouseInEmail, e))
+      email.addEventListener("mouseout", cursorToStop);
+    }
+
+
+    return ()=> {
+      if(endCount){
+        footer.removeEventListener('mouseover',cursorToMove);
+        footer.removeEventListener("mouseout", cursorToStop);
+        footer.removeEventListener('mousemove',(e) =>  cursorMove(mouseInEmail, e));
   
-   
+      }else{
+        footer.removeEventListener('mousemove',cursorToStop)
+        email.removeEventListener('mouseover', cursorToMove)
+        email.removeEventListener('mousemove', (e) =>  cursorMove(mouseInEmail, e));
+        footer.removeEventListener('mousemove',(e) =>  cursorMove(mouseInEmail, e))
+        email.removeEventListener("mouseout", cursorToStop);
+      }}
+  
   },[endCount]) //app disappear
 
 
@@ -92,10 +121,6 @@ function App() {
    
   }, [isDemo, isPhoto ]);
 
-  useEffect(()=>{
-    
-   
-  }, [ ]);
 
   const changeMain = (e) => {
      setcanvas(current => current = e.target.id)
@@ -104,14 +129,6 @@ function App() {
   return (
     // <React.Fragment> === <>
     <>
-    {
-      endCount 
-      ?  
-      <div className='count'>
-        <CountDown changeDown={changeCountDown} />
-      </div>
-     :
-     <>
      <div className="app" >
        <section className="section-1">
          <header>
@@ -159,16 +176,12 @@ function App() {
        ?  
        <>
        <footer>
-          {isConfetti ? <Confetti /> : <FireWork />}
-        <div id='cursor'>click me!</div>
+          { endCount ? <CountDown changeDown={changeCountDown} />  :( isConfetti ? <Confetti /> : <FireWork />) }
+        <div className='cursor' id='cursor'>click me!</div>
        <div className='email' onClick={changeFooter} >emilyback@naver.com</div>
      </footer>
      </> : null
      }
-   </>
-    }
-    
-     
     </>
   )
 }
