@@ -7,19 +7,90 @@ import { initCanvas, randomNumBetween } from '../utils/utils';
 
 const fps = 70;
 const interval = 1000 / fps;
-const CountDown = (props) => {
-const canvasRef = useRef(null);
+
+
+const CountDown = (prop, ref) => {
+  
+  const canvasRef = useRef(null);
+ 
 
   useEffect(()=>{
-    let canCount = true;
+    const imgScr = circleImg;
+    document.querySelector('#ring').src = imgScr;
+  },[])
+
+  useEffect(()=>{
+
     const {canvas, ctx} = initCanvas(canvasRef.current);
     let canvasWidth = canvas.width
     let canvasHeight =  canvas.height;
 
-    const imgScr = circleImg;
     const PARTICLE_NUM = 1000;
     let particles = [];
     let frameId;
+    let canCount = true;
+    const drawCircles = (p)=> {
+      p.rAlpha *= p.rFriction;
+      p.r += p.rAlpha;
+
+      p.angleAlpha *= p.aFriction;
+      p.angle += p.angleAlpha;
+
+      const x = canvasWidth / 2 +  p.r * Math.cos((Math.PI /180) * p.angle);
+      const y = canvasHeight / 2 +  p.r * Math.sin((Math.PI /180) * p.angle);
+      
+      p.opacity -= 0.003;
+
+
+      ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`
+      ctx.beginPath();
+      ctx.arc(x, y, 1, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.closePath();
+    }
+
+    const mouseClick = () => {
+      console.log("click counter")
+      if(!canCount) return;      
+      canCount = false;      
+      const texts = document.querySelectorAll('.count-span');
+      console.log(texts)
+    
+      const counDownOption = {
+        opacity: 1,
+        scale: 1,
+        duration: 0.4,
+        zIndex: 11,
+        ease: 'Power4.easeOut'
+      };
+    
+      gsap.fromTo(texts[0], {opacity: 0, scale: 5}, {
+        ...counDownOption,
+        
+      })
+      gsap.fromTo(texts[1], {opacity: 0, scale: 5}, {
+       ...counDownOption,
+       delay: 1,
+       onStart: () => texts[0].style.opacity = 0
+      })
+      gsap.fromTo(texts[2], {opacity: 0, scale: 5}, {
+        ...counDownOption,
+        delay: 2,
+        onStart: () => texts[1].style.opacity = 0
+      })
+     
+      const ringImg = document.querySelector('#ring');
+      gsap.fromTo(ringImg, {opacity: 1, } ,{
+        opacity: 0, 
+        duration: 1, 
+        delay: 3,
+        onStart: ()=>{
+          render();
+          texts[2].style.opacity = 0
+        }
+      })
+    }
+
 
     function render(){
 
@@ -51,7 +122,7 @@ const canvasRef = useRef(null);
             // delay: 1
             // onComplete: () => props.changeDown(false)
           })
-          props.changeDown(false);
+          prop.changeDown(false);
 
         }else{
           now = Date.now();
@@ -74,87 +145,29 @@ const canvasRef = useRef(null);
       }
       requestAnimationFrame(frame);
     }
-    const drawCircles = (p)=> {
-      p.rAlpha *= p.rFriction;
-      p.r += p.rAlpha;
 
-      p.angleAlpha *= p.aFriction;
-      p.angle += p.angleAlpha;
+    document.querySelector('.count-down').addEventListener('click',mouseClick )
 
-      const x = canvasWidth / 2 +  p.r * Math.cos((Math.PI /180) * p.angle);
-      const y = canvasHeight / 2 +  p.r * Math.sin((Math.PI /180) * p.angle);
-      
-      p.opacity -= 0.003;
-
-
-      ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`
-      ctx.beginPath();
-      ctx.arc(x, y, 1, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.closePath();
-    }
-
-    const mouseClick = () => {
-      console.log("click counter")
-      if(!canCount) return;
-      canCount = false;
-      const texts = document.querySelectorAll('span')
-    
-      const counDownOption = {
-        opacity: 1,
-        scale: 1,
-        duration: 0.4,
-        ease: 'Power4.easeOut'
-      };
-    
-      gsap.fromTo(texts[0], {opacity: 0, scale: 5}, {
-        ...counDownOption
-      })
-      gsap.fromTo(texts[1], {opacity: 0, scale: 5}, {
-       ...counDownOption,
-       delay: 1,
-       onStart: () => texts[0].style.opacity = 0
-      })
-      gsap.fromTo(texts[2], {opacity: 0, scale: 5}, {
-        ...counDownOption,
-        delay: 2,
-        onStart: () => texts[1].style.opacity = 0
-      })
-     
-      const ringImg = document.querySelector('#ring');
-      gsap.fromTo(ringImg, {opacity: 1, } ,{
-        opacity: 0, 
-        duration: 1, 
-        delay: 3,
-        onStart: ()=>{
-          render();
-          texts[2].style.opacity = 0
-        }
-      })
-    }
-
-    document.querySelector('#ring').src = imgScr; 
-    window.addEventListener('click', mouseClick);
     return () => {
       console.log("CountDown unmounted")
-      window.removeEventListener('click', mouseClick);
+      // window.removeEventListener('click', mouseClick);
+      // document.querySelector('.count-down').removeEventListener('click',mouseClick )
       // document.querySelector(".count-down").style = "display: flex";
       cancelAnimationFrame(frameId);
-
     }
 
   },[])
 
-  
+
 
   return (
     <div className="count-down">
       <img id="ring" />
       <canvas ref={canvasRef}></canvas>
       <div id="countdown">
-        <span>3</span>
-        <span>2</span>
-        <span>1</span>
+        <span className='count-span'>3</span>
+        <span className='count-span'>2</span>
+        <span className='count-span'>1</span>
       </div>
     </div>
   )
@@ -162,8 +175,7 @@ const canvasRef = useRef(null);
 
 
 CountDown.propTypes = {
-  changeDown: PropTypes.func,
-  
+  changeDown: PropTypes.func,  
 };
 
 export default CountDown;
