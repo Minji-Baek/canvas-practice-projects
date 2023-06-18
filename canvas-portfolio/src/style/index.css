@@ -132,11 +132,19 @@ html, body {
   width: 60%;
   font-size: 1.6rem;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  text-align: left;
   padding: 0 3rem;
   line-height: 1.4;
   letter-spacing: 0.1rem;
 }
+
+.section-3 > article > a :-webkit-any-link {
+  line-height: 3;
+  color: #fff !important;
+} 
 
 
 footer {
