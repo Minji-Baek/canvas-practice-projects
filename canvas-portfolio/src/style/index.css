@@ -134,16 +134,15 @@ html, body {
   display: flex;
   flex-direction: column;
   /* align-items: center; */
-  justify-content: center;
+  justify-content: center !important;
   text-align: left;
   padding: 0 3rem;
   line-height: 1.4;
   letter-spacing: 0.1rem;
 }
 
-.section-3 > article > a :-webkit-any-link {
+.section-3 > article > a {
   line-height: 3;
-  color: #fff !important;
 } 
 
 

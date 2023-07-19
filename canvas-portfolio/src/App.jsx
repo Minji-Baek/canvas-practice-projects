@@ -250,10 +250,13 @@ function App() {
             </div>
           </aside>
           <article>
+            <>
             {selectArticle.detail.map((de, i) => (
               <span key={i} style={ i === 0 ? {  fontSize : "1.8rem", fontWeight : 600, lineHeight: 1.8, }  : ( i === 1 ?  {  fontSize : "1.7rem", lineHeight: 1.6, }: {  fontSize : "1.6rem" })} >{de}</span>
             ))}
-            <div style={{flexDirection: 'column', lineHeight: 3, fontWeight : 600 , fontSize : "2rem", }}> {selectArticle.url ? (  <a href={selectArticle.url} target="_blank">{selectArticle.url}</a> ) : null }</div> 
+            </>
+           
+            <div style={{ marginTop: "auto", lineHeight: 3, fontWeight : 600 , fontSize : "2rem", textAlign: "end" }}> {selectArticle.url ? (  <a href={selectArticle.url} target="_blank">{selectArticle.url}</a> ) : null }</div> 
           </article>
         </section>
         <section className='section-4'>
