@@ -1,15 +1,15 @@
 import '../style/containers/MiniGame.css'
-import bg1 from '../assets/minigame/bg1.png'
-import bg2 from '../assets/minigame/bg2.png'
-import bg3 from '../assets/minigame/bg3.png'
+import bg1 from '../../public/assets/minigame/bg1.png'
+import bg2 from '../../public/assets/minigame/bg2.png'
+import bg3 from '../../public/assets/minigame/bg3.png'
 
-import bird from '../assets/minigame/bird.png'
-import blueBird from '../assets/minigame/blue-bird.png'
-import coin from '../assets/minigame/coin.png'
-import play from '../assets/minigame/play.svg'
-import replay from '../assets/minigame/replay.svg'
-import title from '../assets/minigame/title2.png'
-import wall from '../assets/minigame/Wall.png'
+import bird from '../../public/assets/minigame/bird.png'
+import blueBird from '../../public/assets/minigame/blue-bird.png'
+import coin from '../../public/assets/minigame/coin.png'
+import play from '../../public/assets/minigame/play.svg'
+import replay from '../../public/assets/minigame/replay.svg'
+import title from '../../public/assets/minigame/title2.png'
+import wall from '../../public/assets/minigame/Wall.png'
 import gsap from 'gsap';
 
 

@@ -1,5 +1,5 @@
 import '../style/containers/CountDown.css';
-import circleImg from '../assets/circle4.png';
+import circleImg from '../../public/assets/circle4.png'; 
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import PropTypes from 'prop-types';

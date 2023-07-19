@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import '../style/containers/RotateCanvas.css'
 import {Engine, Render, Runner, Mouse, MouseConstraint, Composite, Bodies, Events} from 'matter-js'
-import IconVUE from '../assets/icon_VUE.png';
-import IconHTML from '../assets/icon_HTML.png';
-import IconCSS from '../assets/icon_CSS.png';
-import IconJS from '../assets/icon_JS.png';
-import IconREACT from '../assets/icon_REACT.png';
-import IconTHREE from '../assets/icon_THREE.png';
+import IconVUE from '../../public/assets/icon_VUE.png';
+import IconHTML from '../../public/assets/icon_HTML.png';
+import IconCSS from '../../public/assets/icon_CSS.png';
+import IconJS from '../../public/assets/icon_JS.png';
+import IconREACT from '../../public/assets/icon_REACT.png';
+import IconTHREE from '../../public/assets/icon_THREE.png';
 import { entries } from 'lodash';
 
 const data = {

@@ -2,12 +2,12 @@ import { useEffect, useRef } from 'react';
 import '../style/containers/Nudake.css';
 import throttle from 'lodash/throttle';
 import gsap from 'gsap';
-import image1 from '../assets/sori1.jpg';
-import image3 from '../assets/sori3.jpg';
-import image4 from '../assets/sori4.jpg';
+import image1 from '../../public/assets/sori1.jpg';
+import image3 from '../../public/assets/sori3.jpg';
+import image4 from '../../public/assets/sori4.jpg';
 
-import image5 from '../assets/nurung1.jpg';
-import image6 from '../assets/nurung2.jpg';
+import image5 from '../../public/assets/nurung1.jpg';
+import image6 from '../../public/assets/nurung2.jpg';
 
 import { drawImageCenter, getAngle, getDistance, getScrupedPercent, initCanvas } from '../utils/utils';
 
