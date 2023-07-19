@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import ArrowImg from './assets/arrow.svg';
+import ArrowImg from '../assets/arrow.svg'; 
 import Nudake from './containers/Nudake';
 import RotateCanvas from './containers/RotateCanvas';
 import CountDown from './containers/CountDown';
